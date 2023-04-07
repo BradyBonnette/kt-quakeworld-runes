@@ -35,7 +35,7 @@ void() grap_fire =
 
   if(self.grap_firetest)
   {
-  	return;
+    return;
   }
 
   temp = self;
@@ -43,9 +43,9 @@ void() grap_fire =
 
   if(self.grap_cornerchainNext)
   { // Harpoon already out there
-  	harpoon = grap_findHarpoon(self);
+    harpoon = grap_findHarpoon(self);
 
-  	// Check if it is waiting to come back...
+    // Check if it is waiting to come back...
     if(self.grap_state == GRAP_IDEAL)
     {
       // bring back...
@@ -56,18 +56,18 @@ void() grap_fire =
       self.grap_state = GRAP_TOHARPOON;
       self.grap_checkTimeout = 0;
 
-	    self.attack_finished = time + 0.4;
+      self.attack_finished = time + 0.4;
     }
     else
     {
-	    self.attack_finished = time + 1;
+      self.attack_finished = time + 1;
 
       // remove harpoon
       other = self;
       self = harpoon;
       grap_touchOwner();
     }
-	  self = temp;
+    self = temp;
     return;
   }
 
@@ -78,40 +78,40 @@ void() grap_fire =
 
   if(trace_fraction != 1.0 && !trace_ent.takedamage)
   {
-  	// To near a wall, can't throw turret
+    // To near a wall, can't throw turret
     sprint(self, PRINT_HIGH, "Too close to a wall!!\n");
     return;
   }
 
-	// play firing sound
-	sound (self, CHAN_AUTO, "weapons/grapple/grapl_2.wav", 1, ATTN_NORM);
+  // play firing sound
+  sound (self, CHAN_AUTO, "weapons/grapple/grapl_2.wav", 1, ATTN_NORM);
 
   makevectors(self.v_angle);
   dir = v_forward;
 
   // create & launch harpoon
-	harpoon = spawn();
+  harpoon = spawn();
 
-	harpoon.grap_owner = self;
-	harpoon.angles = vectoangles(dir);
-	harpoon.movetype = MOVETYPE_FLYMISSILE;
-	harpoon.solid = SOLID_BBOX;
-	setmodel (harpoon, "progs/harpoon.mdl");
-	setsize (harpoon, VEC_ORIGIN, VEC_ORIGIN);
+  harpoon.grap_owner = self;
+  harpoon.angles = vectoangles(dir);
+  harpoon.movetype = MOVETYPE_FLYMISSILE;
+  harpoon.solid = SOLID_BBOX;
+  setmodel (harpoon, "progs/harpoon.mdl");
+  setsize (harpoon, VEC_ORIGIN, VEC_ORIGIN);
   // PKQW
   //harpoon.punchangle_x = -2;
-	harpoon.touch = grap_touch;
+  harpoon.touch = grap_touch;
   harpoon.grap_state = GRAP_HARPOON;
 
-	// For the correct death messages
-	harpoon.pk_currentitem = PK_IT_GRAPGUN;
-	harpoon.weapon = IT_AXE;
+  // For the correct death messages
+  harpoon.pk_currentitem = PK_IT_GRAPGUN;
+  harpoon.weapon = IT_AXE;
 
-	self.grap_cornerchainNext = harpoon;
+  self.grap_cornerchainNext = harpoon;
 
-	harpoon.classname = "Harpoon";
-	setorigin (harpoon, self.origin + '0 0 16');
-	harpoon.velocity = dir * 2000;
+  harpoon.classname = "Harpoon";
+  setorigin (harpoon, self.origin + '0 0 16');
+  harpoon.velocity = dir * 2000;
 
 
   // let out rope
@@ -121,9 +121,9 @@ void() grap_fire =
   self.grap_checkTimeout = 0;
 
 
-	self.attack_finished = time + 0.5;
+  self.attack_finished = time + 0.5;
 
-	player_grapfire1();
+  player_grapfire1();
   self = temp;
 };
 
@@ -132,7 +132,7 @@ void() grap_releaseHarpoon =
 {
   if(self.grap_cornerchainNext)
   { // Harpoon is out there
-  	local entity harpoon, temp;
+    local entity harpoon, temp;
 
     harpoon = grap_findHarpoon(self);
 
@@ -141,7 +141,7 @@ void() grap_releaseHarpoon =
     other = self;
     self = harpoon;
     grap_touchOwner();
-	  self = temp;
+    self = temp;
   }
 };
 
@@ -155,17 +155,17 @@ float() grap_maintainRope =
   // play rope sounds needed...
   if(self.grap_state == GRAP_OUT)
   {
-  	if(self.grap_checkTimeout < time)
+    if(self.grap_checkTimeout < time)
     {
-		  sound (self, CHAN_GRAPROPE, "weapons/grapple/grapr_2.wav", 1, ATTN_NORM);
+      sound (self, CHAN_GRAPROPE, "weapons/grapple/grapr_2.wav", 1, ATTN_NORM);
       self.grap_checkTimeout = time + 3.2;
     }
   }
   else if(self.grap_state == GRAP_IN || self.grap_state == GRAP_TOHARPOON)
   {
-  	if(self.grap_checkTimeout < time)
+    if(self.grap_checkTimeout < time)
     {
-		  sound (self, CHAN_GRAPROPE, "weapons/grapple/graps_2.wav", 1, ATTN_NORM);
+      sound (self, CHAN_GRAPROPE, "weapons/grapple/graps_2.wav", 1, ATTN_NORM);
       self.grap_checkTimeout = time + 3.2;
     }
   }
@@ -182,13 +182,13 @@ float() grap_maintainRope =
   while(corner.grap_cornerchainNext)
   {
 
-  	totalLength = totalLength + vlen(corner.grap_cornerchainNext.origin - cornerOrigin);
+    totalLength = totalLength + vlen(corner.grap_cornerchainNext.origin - cornerOrigin);
 
-  	grep_createCornerRope(corner, cornerOrigin);
+    grep_createCornerRope(corner, cornerOrigin);
 
-		corner = corner.grap_cornerchainNext;
-	  cornerOrigin = corner.origin;
-	}
+    corner = corner.grap_cornerchainNext;
+    cornerOrigin = corner.origin;
+  }
 
   return totalLength;
 };
@@ -371,18 +371,18 @@ void(entity corner, vector cornerOrigin) grep_createCornerRope =
 
 void() grap_touch =
 {
-	local entity grapOwner;
+  local entity grapOwner;
   local vector temp;
 
-	if (other == self.grap_owner)
-		return;
+  if (other == self.grap_owner)
+    return;
 
-	if (pointcontents(self.origin) == CONTENT_SKY)
-	{
-  	self.grap_pull = self;
-		grap_touchOwner();
-		return;
-	}
+  if (pointcontents(self.origin) == CONTENT_SKY)
+  {
+    self.grap_pull = self;
+    grap_touchOwner();
+    return;
+  }
 
   self.touch = SUB_Null;
 
@@ -393,58 +393,58 @@ void() grap_touch =
   }
 
 
-// hit something that bleeds
-//	if(other.takedamage)
+  // hit something that bleeds
+  //	if(other.takedamage)
   if((other.health && other.solid != SOLID_BSP && other.solid != SOLID_NOT) || other.solid == SOLID_TRIGGER || grapOwner.grap_firetest)
-	{
+  {
     self.grap_owner.grap_checkTimeout = 0;
-		self.touch = grap_touchOwner;
+    self.touch = grap_touchOwner;
 
-	  // set the corner touch functions.
-	  grapOwner = self.grap_owner;
-	  while(grapOwner.grap_state == GRAP_CORNER)
-  	{
-	    grapOwner.touch = grep_touchCorner;
-  	  grapOwner = grapOwner.grap_owner;
-	  }
+    // set the corner touch functions.
+    grapOwner = self.grap_owner;
+    while(grapOwner.grap_state == GRAP_CORNER)
+    {
+      grapOwner.touch = grep_touchCorner;
+      grapOwner = grapOwner.grap_owner;
+    }
 
     // set owner state
     grapOwner.grap_state = GRAP_IN;
 
-  	if(other.health && other.solid != SOLID_BSP && other.solid != SOLID_NOT)
+    if(other.health && other.solid != SOLID_BSP && other.solid != SOLID_NOT)
     {
-		  // play hit sound
-			sound(self, CHAN_AUTO, "weapons/grapple/grapf_1.wav", 1, ATTN_NORM);
+      // play hit sound
+      sound(self, CHAN_AUTO, "weapons/grapple/grapf_1.wav", 1, ATTN_NORM);
 
-			spawn_touchblood (9);
-			T_Damage(other, self, grapOwner, 9);
+      spawn_touchblood (9);
+      T_Damage(other, self, grapOwner, 9);
 
     }
     else
     {
-		  // play hit sound
-			sound (self, CHAN_AUTO, "weapons/grapple/graph_2b.wav", 1, ATTN_NORM);
+      // play hit sound
+      sound (self, CHAN_AUTO, "weapons/grapple/graph_2b.wav", 1, ATTN_NORM);
     }
 
     // drag to the owner.
     if((other.health && other.solid != SOLID_BSP && other.solid != SOLID_NOT) || other.solid == SOLID_TRIGGER)
     {
-	    self.grap_pull = other;
-  	  self.grap_pull.grap_owner = self.grap_owner;
-    	self.grap_pull.movetype = MOVETYPE_FLY;
+      self.grap_pull = other;
+      self.grap_pull.grap_owner = self.grap_owner;
+      self.grap_pull.movetype = MOVETYPE_FLY;
     }
-	}
+  }
   else
   {
-	  // play hit sound
-		sound (self, CHAN_AUTO, "weapons/grapple/graph_2b.wav", 1, ATTN_NORM);
+    // play hit sound
+    sound (self, CHAN_AUTO, "weapons/grapple/graph_2b.wav", 1, ATTN_NORM);
 
     grapOwner.grap_state = GRAP_IDEAL;
   }
 
-	// come back to the grap_owner
+  // come back to the grap_owner
   // setting the velocity does some weird things
-	self.velocity = '0 0 0';
+  self.velocity = '0 0 0';
 
   // stop creation of rope
   if(self.grap_pull)
@@ -465,12 +465,12 @@ void() grap_touch =
 
 void() grap_touchOwner =
 {
-	local entity grapOwner;
+  local entity grapOwner;
 
   // if touch grap_pull, don't bother to remove self, not there yet.
   if(self.grap_pull == other)
   {
-  	return;
+    return;
   }
 
   // check if hit a corner...
@@ -497,7 +497,7 @@ void() grap_touchOwner =
     grapOwner = self.grap_owner;
     while(grapOwner.grap_state == GRAP_CORNER)
     {
-    	grapOwner = grapOwner.grap_owner;
+      grapOwner = grapOwner.grap_owner;
     }
 
     grap_remove(grapOwner);
@@ -508,13 +508,13 @@ void() grap_touchOwner =
 
 void() grap_goToOwner =
 {
-	local vector temp;
+  local vector temp;
 
   if(self.grap_checkTimeout < time)
   {
-  	if(self.origin == self.oldorigin)
+    if(self.origin == self.oldorigin)
     { // stuck on wall or something
-    	other = self.grap_owner;
+      other = self.grap_owner;
       grap_touchOwner();
       return;
     }
@@ -522,68 +522,68 @@ void() grap_goToOwner =
 
   self.oldorigin = self.origin;
 
-	self.nextthink = time + 0.1;
+  self.nextthink = time + 0.1;
 
   if(self.grap_pull)
-  if(self.grap_pull.solid != SOLID_TRIGGER)
-  if(self.grap_pull.health < 1 || self.grap_pull.solid == SOLID_NOT)  // check if the entity is dead or "picked up"
-  {
-    self.grap_pull.grap_owner = world;
-
-    if(self.grap_pull.classname == "player")
-    {
-      if(!self.grap_pull.deadflag && !self.disconnectPlayer)
+    if(self.grap_pull.solid != SOLID_TRIGGER)
+      if(self.grap_pull.health < 1 || self.grap_pull.solid == SOLID_NOT)  // check if the entity is dead or "picked up"
       {
-        self.grap_pull.movetype = MOVETYPE_WALK;
+        self.grap_pull.grap_owner = world;
+
+        if(self.grap_pull.classname == "player")
+        {
+          if(!self.grap_pull.deadflag && !self.disconnectPlayer)
+          {
+            self.grap_pull.movetype = MOVETYPE_WALK;
+          }
+        }
+        else
+        {
+          self.grap_pull.movetype = MOVETYPE_STEP;
+        }
+        self.grap_pull = world;
       }
-    }
-    else
-    {
-      self.grap_pull.movetype = MOVETYPE_STEP;
-    }
-  	self.grap_pull = world;
-  }
 
   if(self.grap_pull)
   {
-  	// give veelocity to target entity.
-		temp = normalize((self.grap_owner.origin) - self.grap_pull.origin);
-		self.grap_pull.velocity = temp * 500;
+    // give veelocity to target entity.
+    temp = normalize((self.grap_owner.origin) - self.grap_pull.origin);
+    self.grap_pull.velocity = temp * 500;
 
     if(self.grap_pull.flags & FL_ONGROUND)
     {
       self.grap_pull.flags = self.grap_pull.flags - FL_ONGROUND;
-	    setorigin(self.grap_pull, self.grap_pull.origin + '0 0 1');
+      setorigin(self.grap_pull, self.grap_pull.origin + '0 0 1');
     }
 
     // set current harpoon origin relative
     self.origin = self.grap_pull.origin + self.grep_offset;
     setorigin(self, self.origin);
- }
- else
- {
-		temp = normalize((self.grap_owner.origin + '0 0 16') - self.origin);
-	  self.velocity = temp * 500;
- }
+  }
+  else
+  {
+    temp = normalize((self.grap_owner.origin + '0 0 16') - self.origin);
+    self.velocity = temp * 500;
+  }
 };
 
 
 void() grap_ownerToTarget =
 {
-	local float dist;
+  local float dist;
   local string str;
 
   // double check if is valid
   if(self.grap_owner.grap_state != GRAP_TOHARPOON)
   {
-  	return;
+    return;
   }
 
   if(self.grap_checkTimeout < time)
   {
-  	if(self.grap_owner.origin == self.grap_owner.oldorigin)
+    if(self.grap_owner.origin == self.grap_owner.oldorigin)
     { // stuck on wall or something
-    	other = self.grap_owner;
+      other = self.grap_owner;
       grap_touchOwner();
       return;
     }
@@ -603,7 +603,7 @@ void() grap_ownerToTarget =
     }
   }
 
-	self.nextthink = time + 0.1;
+  self.nextthink = time + 0.1;
 };
 
 
@@ -615,38 +615,38 @@ void() grap_maintainHarpoon =
 
   temp = self;
 
-//	if(self.grap_owner) // if being pulled by a harpoon
-//  {
-//		local vector temp;
-//		temp = normalize((self.grap_owner.origin + '0 0 16') - self.origin);
-//	  self.velocity = self.velocity = temp * 500;
-//  }
+  //	if(self.grap_owner) // if being pulled by a harpoon
+  //  {
+  //		local vector temp;
+  //		temp = normalize((self.grap_owner.origin + '0 0 16') - self.origin);
+  //	  self.velocity = self.velocity = temp * 500;
+  //  }
 
   if(!self.grap_cornerchainNext) // if harpoon not out
   {
-  	self.grap_firetest = 0;
-		return;
+    self.grap_firetest = 0;
+    return;
   }
 
   if(self.weapon == IT_AXE && self.pk_currentitem == PK_IT_GRAPGUN)
   {
-  	if(!self.button0)
+    if(!self.button0)
     {
-	  	self.grap_firetest = 0;
+      self.grap_firetest = 0;
     }
   }
   else
   {
-  	self.grap_firetest = 0;
+    self.grap_firetest = 0;
   }
 
   if((self.teleport_time > time) || 	// if player goes through teleport
-		(self.view_ofs == '0 0 0'))       // or intermission
+      (self.view_ofs == '0 0 0'))       // or intermission
   {
     other = self;
     self = grap_findHarpoon(self);
     grap_touchOwner();
-	  self = temp;
+    self = temp;
     return;
   }
 
@@ -655,34 +655,34 @@ void() grap_maintainHarpoon =
     other = self;
     self = grap_findHarpoon(self);
     grap_touchOwner();
-	  self = temp;
+    self = temp;
     return;
   }
 
   if(grap_maintainRope() > GRAPROPE_MAXLEENGTH)
   {
-  	if(self.grap_state == GRAP_IDEAL || self.grap_state == GRAP_OUT)
+    if(self.grap_state == GRAP_IDEAL || self.grap_state == GRAP_OUT)
     {
-    	local entity harpoon;
+      local entity harpoon;
 
       // bring back...
-	  	harpoon = grap_findHarpoon(self);
+      harpoon = grap_findHarpoon(self);
 
-	    harpoon.grap_owner.grap_checkTimeout = 0;
-			harpoon.touch = grap_touchOwner;
-  		harpoon.grap_pull = world;
-		  harpoon.nextthink = time + 0.1;
-	    harpoon.think = grap_goToOwner;
-  	  harpoon.grap_checkTimeout = time + 0.5;
-  	  self.grap_state = GRAP_IN;
+      harpoon.grap_owner.grap_checkTimeout = 0;
+      harpoon.touch = grap_touchOwner;
+      harpoon.grap_pull = world;
+      harpoon.nextthink = time + 0.1;
+      harpoon.think = grap_goToOwner;
+      harpoon.grap_checkTimeout = time + 0.5;
+      self.grap_state = GRAP_IN;
       return;
     }
     else if(self.grap_state != GRAP_IN)
     { // remove...
-	    other = self;
-  	  self = grap_findHarpoon(self);
-    	grap_touchOwner();
-		  self = temp;
+      other = self;
+      self = grap_findHarpoon(self);
+      grap_touchOwner();
+      self = temp;
       return;
     }
   }
@@ -690,9 +690,9 @@ void() grap_maintainHarpoon =
 
   if(self.grap_state == GRAP_TOHARPOON)
   {
-		local vector normDir;
-		normDir = normalize(self.grap_cornerchainNext.origin - (self.origin + '0 0 16'));
-	  self.velocity = self.velocity = normDir * 500;
+    local vector normDir;
+    normDir = normalize(self.grap_cornerchainNext.origin - (self.origin + '0 0 16'));
+    self.velocity = self.velocity = normDir * 500;
   }
 };
 
@@ -704,18 +704,18 @@ void(entity grapOwner) grap_remove =
 
   while(e)
   {
-		f = e;
+    f = e;
     e = e.grap_cornerchainNext;
 
     if(f.grap_pull)
     {
-	  	f.grap_pull.grap_owner = world;
+      f.grap_pull.grap_owner = world;
 
       if(f.grap_pull.classname == "player")
       {
-      	if(!f.grap_pull.deadflag && !self.disconnectPlayer)
+        if(!f.grap_pull.deadflag && !self.disconnectPlayer)
         {
-	        f.grap_pull.movetype = MOVETYPE_WALK;
+          f.grap_pull.movetype = MOVETYPE_WALK;
         }
       }
       else
@@ -739,18 +739,18 @@ void(entity grapOwner) grap_removeRope =
 
   while(e)
   {
-		f = e;
+    f = e;
     e = e.grap_ropechainPrev;
 
     if(f.grap_pull)
     {
-	  	f.grap_pull.grap_owner = world;
+      f.grap_pull.grap_owner = world;
 
       if(f.grap_pull.classname == "player")
       {
-      	if(!f.grap_pull.deadflag && !self.disconnectPlayer)
+        if(!f.grap_pull.deadflag && !self.disconnectPlayer)
         {
-	        f.grap_pull.movetype = MOVETYPE_WALK;
+          f.grap_pull.movetype = MOVETYPE_WALK;
         }
       }
       else
@@ -768,12 +768,12 @@ void(entity grapOwner) grap_removeRope =
 
 entity(entity ropeOwner) grap_createRope =
 {
-	local entity rope;
+  local entity rope;
 
   rope = spawn();
   rope.movetype = MOVETYPE_FLYMISSILE;
   rope.solid = SOLID_NOT;
-	setsize (rope, VEC_ORIGIN, VEC_ORIGIN);
+  setsize (rope, VEC_ORIGIN, VEC_ORIGIN);
   // PKQW
   //rope.punchangle_x = -2;
 
@@ -797,13 +797,13 @@ entity(entity ropeOwner) grap_createRope =
 // Find the harpoon entity.
 entity(entity start) grap_findHarpoon =
 {
-	while(start.grap_cornerchainNext)
+  while(start.grap_cornerchainNext)
   {
-  	start = start.grap_cornerchainNext;
+    start = start.grap_cornerchainNext;
 
     if(start.grap_state != GRAP_CORNER)
     {
-    	return start;
+      return start;
     }
   }
 
@@ -813,13 +813,13 @@ entity(entity start) grap_findHarpoon =
 
 void(entity corner) grap_removeCorner =
 {
-	// remove the owner connection.
+  // remove the owner connection.
   corner.grap_owner.grap_cornerchainNext = corner.grap_cornerchainNext;
 
   // remove the next corner owner connection.
   if(corner.grap_cornerchainNext)
   {
-	  corner.grap_cornerchainNext.grap_owner = corner.grap_owner;
+    corner.grap_cornerchainNext.grap_owner = corner.grap_owner;
   }
 
   // remove the rope for this corner.
@@ -833,12 +833,12 @@ void(entity corner) grap_removeCorner =
 
 void() grep_touchCorner =
 {
-	if(other != self.grap_cornerchainNext)
+  if(other != self.grap_cornerchainNext)
   {
-  	// remove corner
-		grap_removeCorner(self);
+    // remove corner
+    grap_removeCorner(self);
 
-  	// move onto the next corner.
+    // move onto the next corner.
     // this is done in the grap_goToOwner
   }
 };
@@ -847,7 +847,7 @@ void() grep_touchCorner =
 
 float() grap_checkCornerLines =
 {
-	local entity corner, tryNext, del;
+  local entity corner, tryNext, del;
   local vector cornerOrigin;
 
   corner = self.grap_cornerchainNext;
@@ -855,24 +855,24 @@ float() grap_checkCornerLines =
 
   while(corner)
   {
-  	// check if the line is broken
+    // check if the line is broken
     traceline (cornerOrigin, corner.origin, TRUE, self.grap_pull);
 
     if(trace_fraction < 1.0)
     { // line is broken, create a new corner.
-    	if(grap_createCorner(corner.grap_owner))
+      if(grap_createCorner(corner.grap_owner))
       {
-      	// if it was the owner that went out of line, do a double check...
+        // if it was the owner that went out of line, do a double check...
         if(corner.grap_owner == self)
         {
-        	if(grap_forceCheckCorner(self))
+          if(grap_forceCheckCorner(self))
           {
-          	return TRUE;
+            return TRUE;
           }
         }
         else
         {
-	      	return TRUE;
+          return TRUE;
         }
       }
     }
@@ -881,14 +881,14 @@ float() grap_checkCornerLines =
       tryNext = corner.grap_cornerchainNext;
 
       while(tryNext) {
-      	if(grap_checkIfCanBeRemoved(corner.grap_owner, cornerOrigin, tryNext.origin))
+        if(grap_checkIfCanBeRemoved(corner.grap_owner, cornerOrigin, tryNext.origin))
         { // Up to this corner can be deleted.
 
           while(corner != tryNext)
           {
-						del = corner;
+            del = corner;
             corner = corner.grap_cornerchainNext;
-						grap_removeCorner(del);
+            grap_removeCorner(del);
           }
         }
 
@@ -896,17 +896,17 @@ float() grap_checkCornerLines =
       }
     }
 
-	  cornerOrigin = corner.origin;
+    cornerOrigin = corner.origin;
     corner = corner.grap_cornerchainNext;
   }
 
   // if going to target, resetup goto
   if(self.grap_state == GRAP_TOHARPOON)
   {
-  	if(self.grap_cornerchainNext.nextthink < time)
+    if(self.grap_cornerchainNext.nextthink < time)
     {
-	    self.grap_cornerchainNext.nextthink = time + 0.1;
-	    self.grap_cornerchainNext.grap_checkTimeout = time + 0.5;
+      self.grap_cornerchainNext.nextthink = time + 0.1;
+      self.grap_cornerchainNext.grap_checkTimeout = time + 0.5;
     }
 
     self.grap_cornerchainNext.think = grap_ownerToTarget;
@@ -920,10 +920,10 @@ float() grap_checkCornerLines =
 
 float(entity cornerOwner) grap_createCorner =
 {
-	local vector dir, startPoint, checkPos, ownerOrigin;
+  local vector dir, startPoint, checkPos, ownerOrigin;
   local float checkAmount;
 
-	// try the plane normal out to 100 to see if we can find a corner.
+  // try the plane normal out to 100 to see if we can find a corner.
 
   dir = trace_plane_normal;
   startPoint = trace_endpos;
@@ -931,25 +931,25 @@ float(entity cornerOwner) grap_createCorner =
 
   if(cornerOwner.grap_state == GRAP_CORNER)
   {
-  	ownerOrigin = cornerOwner.origin;
+    ownerOrigin = cornerOwner.origin;
   }
   else
   {
-  	ownerOrigin = cornerOwner.origin + '0 0 16';
+    ownerOrigin = cornerOwner.origin + '0 0 16';
   }
 
   while(checkAmount <= 100)
   {
-  	checkPos = startPoint + (dir * checkAmount);
-	  traceline (ownerOrigin, checkPos, TRUE, self.grap_pull);
+    checkPos = startPoint + (dir * checkAmount);
+    traceline (ownerOrigin, checkPos, TRUE, self.grap_pull);
 
-	  if(trace_fraction == 1.0)
+    if(trace_fraction == 1.0)
     {
-		  traceline (cornerOwner.grap_cornerchainNext.origin, checkPos, TRUE, self.grap_pull);
+      traceline (cornerOwner.grap_cornerchainNext.origin, checkPos, TRUE, self.grap_pull);
 
-		  if(trace_fraction == 1.0)
-	    {
-		  	local entity corner;
+      if(trace_fraction == 1.0)
+      {
+        local entity corner;
 
         // setup corner.
         corner = spawn();
@@ -961,7 +961,7 @@ float(entity cornerOwner) grap_createCorner =
         corner.grap_state = GRAP_CORNER;
 
         // Add another 5 just for space...
-		  	checkPos = startPoint + (dir * (checkAmount + 5));
+        checkPos = startPoint + (dir * (checkAmount + 5));
         corner.origin = checkPos;
 
         corner.grap_cornerchainNext = cornerOwner.grap_cornerchainNext;
@@ -989,12 +989,12 @@ float(entity cornerOwner) grap_forceCheckCorner =
 
   endPos = cornerOwner.oldorigin + '0 0 16';
 
-	// double check that the old origin can see the next point.
-	traceline (cornerOwner.grap_cornerchainNext.origin, endPos, TRUE, self.grap_pull);
+  // double check that the old origin can see the next point.
+  traceline (cornerOwner.grap_cornerchainNext.origin, endPos, TRUE, self.grap_pull);
 
-	if(trace_fraction < 1.0)
+  if(trace_fraction < 1.0)
   {
-  	return TRUE; // can't see the oldorigin, something must be very wrong here
+    return TRUE; // can't see the oldorigin, something must be very wrong here
   }
 
   length = vlen(endPos - (cornerOwner.origin + '0 0 16'));
@@ -1003,14 +1003,14 @@ float(entity cornerOwner) grap_forceCheckCorner =
   endPos = endPos + dir;
   length = length - 1;
 
-	// try the difference between the origin & oldorigin
+  // try the difference between the origin & oldorigin
   while(length > 0)
   {
     traceline (cornerOwner.grap_cornerchainNext.origin, endPos, TRUE, self.grap_pull);
 
     if(trace_fraction < 1.0)
     {
-    	// found the first, can't see point.
+      // found the first, can't see point.
       // now run the  grap_createCorner function
       return grap_createCorner(cornerOwner);
     }
@@ -1027,12 +1027,12 @@ float(entity cornerOwner) grap_forceCheckCorner =
 
 float(entity ownerEntity, vector ownerOrigin, vector tryOrigin) grap_checkIfCanBeRemoved =
 {
-	// try the line...
+  // try the line...
   traceline (ownerOrigin, tryOrigin, TRUE, self.grap_pull);
 
   if(trace_fraction == 1.0)
   {
-  	if(ownerEntity == self)
+    if(ownerEntity == self)
     {
       // if the owner... Try the full model size...
       traceline (ownerOrigin + (VEC_HULL_MIN * 2), tryOrigin, TRUE, self.grap_pull);
@@ -1060,10 +1060,10 @@ float(entity ownerEntity, vector ownerOrigin, vector tryOrigin) grap_checkIfCanB
 
 void() grap_checkIfGrap =
 {
-	if(other.classname == "Harpoon")
+  if(other.classname == "Harpoon")
   { // we have a harpoon from a grappling hook, drag back..
-  	local entity temp;
-		local entity grapOwner;
+    local entity temp;
+    local entity grapOwner;
 
     // and it's going out...
     grapOwner = other.grap_owner;

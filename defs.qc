@@ -1,11 +1,11 @@
 
 /*
-==============================================================================
+   ==============================================================================
 
-			SOURCE FOR GLOBALVARS_T C STRUCTURE
+   SOURCE FOR GLOBALVARS_T C STRUCTURE
 
-==============================================================================
-*/
+   ==============================================================================
+   */
 
 //
 // system globals
@@ -17,22 +17,22 @@ float           time;
 float           frametime;
 
 entity          newmis;                 // if this is set, the entity that just
-								// run created a new missile that should
-								// be simulated immediately
+// run created a new missile that should
+// be simulated immediately
 
 
 float           force_retouch;          // force all entities to touch triggers
-                                        // next frame.  this is needed because
-                                        // non-moving things don't normally scan
-                                        // for triggers, and when a trigger is
-                                        // created (like a teleport trigger), it
-                                        // needs to catch everything.
-                                        // decremented each frame, so set to 2
-                                        // to guarantee everything is touched
+// next frame.  this is needed because
+// non-moving things don't normally scan
+// for triggers, and when a trigger is
+// created (like a teleport trigger), it
+// needs to catch everything.
+// decremented each frame, so set to 2
+// to guarantee everything is touched
 string          mapname;
 
 float           serverflags;            // propagated from level to level, used to
-								// keep track of completed episodes
+// keep track of completed episodes
 
 float           total_secrets;
 float           total_monsters;
@@ -79,11 +79,11 @@ void()          PutClientInServer;              // call after setting the parm1.
 void()          ClientDisconnect;
 
 void()          SetNewParms;                    // called when a client first connects to
-									// a server. sets parms so they can be
-									// saved off for restarts
+// a server. sets parms so they can be
+// saved off for restarts
 
 void()          SetChangeParms;                 // call to set parms for self so they can
-									// be saved for a level transition
+// be saved for a level transition
 
 
 //================================================
@@ -91,12 +91,12 @@ void            end_sys_globals;                // flag for structure dumping
 //================================================
 
 /*
-==============================================================================
+   ==============================================================================
 
-			SOURCE FOR ENTVARS_T C STRUCTURE
+   SOURCE FOR ENTVARS_T C STRUCTURE
 
-==============================================================================
-*/
+   ==============================================================================
+   */
 
 //
 // system fields (*** = do not set in prog code, maintained by C code)
@@ -213,12 +213,12 @@ void            end_sys_fields;                 // flag for structure dumping
 //================================================
 
 /*
-==============================================================================
+   ==============================================================================
 
-				VARS NOT REFERENCED BY C CODE
+   VARS NOT REFERENCED BY C CODE
 
-==============================================================================
-*/
+   ==============================================================================
+   */
 // **************************************************************************
 //  disc mods
 .entity mydisc;
@@ -228,8 +228,8 @@ void            end_sys_fields;                 // flag for structure dumping
 .float disclanded;
 // **************************************************************************
 /****************\
-* Rune Serv vars *
-\****************/
+ * Rune Serv vars *
+ \****************/
 
 //Rune selection for admin to allow only certain rune in play, default = zero
 //zero = randomly drop all available rune types
@@ -276,10 +276,10 @@ float cloakflag;
 //server variable to use neutron bomb rune
 //if neutronflag equal zero (localinfo neutronflag 0), it means don't use neutron rune
 float neutronflag;  //if neutronflag equal zero (localinfo neutronflag 0), it means don't use neutron rune
-                    //any value greater than zero equals how many times
-                    //it will be dropped within timelimit of level.
-                    //i.e. (timelimit/neutronflag), one minute minimum
-                    //if no time limit, next neutron dropped one hour later
+//any value greater than zero equals how many times
+//it will be dropped within timelimit of level.
+//i.e. (timelimit/neutronflag), one minute minimum
+//if no time limit, next neutron dropped one hour later
 float neutroncount; //how many neutron runes are in a level, never more than one
 float neutrondonetime;  //time last neutron rune was detonated
 
@@ -399,8 +399,8 @@ float RN_NEUTRON = 99; // Neutron Bomb rune
 //float LASERTARG_ON  = 1;
 
 /********************\
-* Rune Serv vars end *
-\********************/
+ * Rune Serv vars end *
+ \********************/
 
 //
 // constants
@@ -709,8 +709,8 @@ float   AS_MISSILE              = 4;
 .float          axhitme;
 
 .float          show_hostile;   // set to time+0.2 whenever a client fires a
-							// weapon or takes damage.  Used to alert
-							// monsters that otherwise would let the player go
+// weapon or takes damage.  Used to alert
+// monsters that otherwise would let the player go
 .float          jump_flag;              // player jump flag
 .float          swim_flag;              // player swimming sound flag
 .float          air_finished;   // when time > air_finished, start drowning
@@ -852,7 +852,7 @@ void(string s) localcmd = #46;                                  // put string in
 entity(entity e) nextent = #47;                                 // for looping through all ents
 // #48 was removed
 void() ChangeYaw = #49;                                         // turn towards self.ideal_yaw
-											// at self.yaw_speed
+// at self.yaw_speed
 // #50 was removed
 vector(vector v) vectoangles                    = #51;
 
@@ -889,14 +889,14 @@ string(string s) precache_sound2        = #76;          // registered version on
 string(string s) precache_file2         = #77;          // registered version only
 
 void(entity e) setspawnparms            = #78;          // set parm1... to the
-												// values at level start
-												// for coop respawn
+// values at level start
+// for coop respawn
 void(entity killer, entity killee) logfrag = #79;       // add to stats
 
 string(entity e, string key) infokey    = #80;  // get a key value (world = serverinfo)
 float(string s) stof                            = #81;          // convert string to float
 void(vector where, float set) multicast = #82;  // sends the temp message to a set
-												// of clients, possibly in PVS or PHS
+// of clients, possibly in PVS or PHS
 
 //============================================================================
 

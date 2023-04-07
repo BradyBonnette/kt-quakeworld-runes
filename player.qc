@@ -2,12 +2,12 @@
 void() bubble_bob;
 
 /*
-==============================================================================
+   ==============================================================================
 
-PLAYER
+   PLAYER
 
-==============================================================================
-*/
+   ==============================================================================
+   */
 
 $cd /raid/quake/id1/models/player_4
 $origin 0 -6 24
@@ -81,72 +81,72 @@ $frame axattd1 axattd2 axattd3 axattd4 axattd5 axattd6
 
 
 /*
-==============================================================================
-PLAYER
-==============================================================================
-*/
+   ==============================================================================
+   PLAYER
+   ==============================================================================
+   */
 
 void() player_run;
 
 void()  player_stand1 =[        $axstnd1,       player_stand1   ]
 {
-if (self.classname == "player") {
-	self.weaponframe=0;
-	if (self.velocity_x || self.velocity_y)
-	{
-		self.walkframe=0;
-		player_run();
-		return;
-	}
+  if (self.classname == "player") {
+    self.weaponframe=0;
+    if (self.velocity_x || self.velocity_y)
+    {
+      self.walkframe=0;
+      player_run();
+      return;
+    }
 
-        if (self.weapon == IT_AXE)
-        {
-		if (self.walkframe >= 12)
-			self.walkframe = 0;
-		self.frame = $axstnd1 + self.walkframe;
-	}
-	else
-	{
-		if (self.walkframe >= 5)
-			self.walkframe = 0;
-		self.frame = $stand1 + self.walkframe;
-	}
-	self.walkframe = self.walkframe + 1;    
-}
+    if (self.weapon == IT_AXE)
+    {
+      if (self.walkframe >= 12)
+        self.walkframe = 0;
+      self.frame = $axstnd1 + self.walkframe;
+    }
+    else
+    {
+      if (self.walkframe >= 5)
+        self.walkframe = 0;
+      self.frame = $stand1 + self.walkframe;
+    }
+    self.walkframe = self.walkframe + 1;    
+  }
 };
 
 void()  player_run =[   $rockrun1,      player_run      ]
 {
-	if (self.classname == "player") {
-	self.weaponframe=0;
-	if (!self.velocity_x && !self.velocity_y)
-	{
-		self.walkframe=0;
-		player_stand1();
-		return;
-	}
+  if (self.classname == "player") {
+    self.weaponframe=0;
+    if (!self.velocity_x && !self.velocity_y)
+    {
+      self.walkframe=0;
+      player_stand1();
+      return;
+    }
 
-        if (self.weapon == IT_AXE)
-	{
-		if (self.walkframe == 6)
-			self.walkframe = 0;
-		self.frame = $axrun1 + self.walkframe;
-	}
-	else
-	{
-		if (self.walkframe == 6)
-			self.walkframe = 0;
-		self.frame = self.frame + self.walkframe;
-	}
-	self.walkframe = self.walkframe + 1;
-	}
+    if (self.weapon == IT_AXE)
+    {
+      if (self.walkframe == 6)
+        self.walkframe = 0;
+      self.frame = $axrun1 + self.walkframe;
+    }
+    else
+    {
+      if (self.walkframe == 6)
+        self.walkframe = 0;
+      self.frame = self.frame + self.walkframe;
+    }
+    self.walkframe = self.walkframe + 1;
+  }
 };
 
 void()muzzleflash =
 {
-	WriteByte (MSG_MULTICAST, SVC_MUZZLEFLASH);
-	WriteEntity (MSG_MULTICAST, self);
-	multicast (self.origin, MULTICAST_PVS);
+  WriteByte (MSG_MULTICAST, SVC_MUZZLEFLASH);
+  WriteEntity (MSG_MULTICAST, self);
+  multicast (self.origin, MULTICAST_PVS);
 };
 
 
@@ -190,53 +190,53 @@ void () player_disc5;
 
 void () player_disc1 = [ 137.000, player_disc1 ] {
 
-   self.weaponframe = 1.000;
-   if ( self.button0 ) {
+  self.weaponframe = 1.000;
+  if ( self.button0 ) {
 
-      self.disccount = (self.disccount + 1.000);
+    self.disccount = (self.disccount + 1.000);
 
-   } else {
+  } else {
 
-      player_disc2 ();
+    player_disc2 ();
 
-   }
+  }
 
 };
 
 void () player_disc2 = [ 138.000, player_disc3 ] {
 
-   self.weaponframe = 2.000;
+  self.weaponframe = 2.000;
 
 };
 
 void () player_disc3 = [ 139.000, player_disc4 ] {
 
-   self.weaponframe = 3.000;
-   W_FireDisc ();
+  self.weaponframe = 3.000;
+  W_FireDisc ();
 
 };
 
 void () player_disc4 = [ 139.000, player_disc4 ] {
 
-   self.weaponframe = 4.000;
-   if ( !self.discfired ) {
+  self.weaponframe = 4.000;
+  if ( !self.discfired ) {
 
-      player_disc5 ();
-      return ;
+    player_disc5 ();
+    return ;
 
-   }
+  }
 
 };
 
 void () player_disc5 = [ 140.000, player_disc6 ] {
 
-   self.weaponframe = 2.000;
+  self.weaponframe = 2.000;
 
 };
 
 void () player_disc6 = [ 140.000, player_run ] {
 
-   self.weaponframe = 0.000;
+  self.weaponframe = 0.000;
 
 };
 
@@ -244,65 +244,65 @@ void () player_disc6 = [ 140.000, player_run ] {
 
 void() player_nail1   =[$nailatt1, player_nail2  ] 
 {
-	muzzleflash();
+  muzzleflash();
 
-	if (!self.button0 || intermission_running || self.impulse)
-		{player_run ();return;}
-	self.weaponframe = self.weaponframe + 1;
-	if (self.weaponframe == 9)
-		self.weaponframe = 1;
-	SuperDamageSound();
-	W_FireSpikes (4);
-	self.attack_finished = time + 0.2;
+  if (!self.button0 || intermission_running || self.impulse)
+  {player_run ();return;}
+  self.weaponframe = self.weaponframe + 1;
+  if (self.weaponframe == 9)
+    self.weaponframe = 1;
+  SuperDamageSound();
+  W_FireSpikes (4);
+  self.attack_finished = time + 0.2;
 };
 void() player_nail2   =[$nailatt2, player_nail1  ]
 {
-	muzzleflash();
+  muzzleflash();
 
-	if (!self.button0 || intermission_running || self.impulse)
-		{player_run ();return;}
-	self.weaponframe = self.weaponframe + 1;
-	if (self.weaponframe == 9)
-		self.weaponframe = 1;
-	SuperDamageSound();
-	W_FireSpikes (-4);
-	self.attack_finished = time + 0.2;
+  if (!self.button0 || intermission_running || self.impulse)
+  {player_run ();return;}
+  self.weaponframe = self.weaponframe + 1;
+  if (self.weaponframe == 9)
+    self.weaponframe = 1;
+  SuperDamageSound();
+  W_FireSpikes (-4);
+  self.attack_finished = time + 0.2;
 };
 
 //============================================================================
 
 void() player_light1   =[$light1, player_light2  ] 
 {
-	muzzleflash();
+  muzzleflash();
 
-	if (!self.button0 || intermission_running)
-		{player_run ();return;}
-	self.weaponframe = self.weaponframe + 1;
-	if (self.weaponframe == 5)
-		self.weaponframe = 1;
-	SuperDamageSound();
-	W_FireLightning();
-	self.attack_finished = time + 0.2;
+  if (!self.button0 || intermission_running)
+  {player_run ();return;}
+  self.weaponframe = self.weaponframe + 1;
+  if (self.weaponframe == 5)
+    self.weaponframe = 1;
+  SuperDamageSound();
+  W_FireLightning();
+  self.attack_finished = time + 0.2;
 };
 void() player_light2   =[$light2, player_light1  ]
 {
-	muzzleflash();
+  muzzleflash();
 
-	if (!self.button0 || intermission_running)
-		{player_run ();return;}
-	self.weaponframe = self.weaponframe + 1;
-	if (self.weaponframe == 5)
-		self.weaponframe = 1;
-	SuperDamageSound();
-	W_FireLightning();
-	self.attack_finished = time + 0.2;
+  if (!self.button0 || intermission_running)
+  {player_run ();return;}
+  self.weaponframe = self.weaponframe + 1;
+  if (self.weaponframe == 5)
+    self.weaponframe = 1;
+  SuperDamageSound();
+  W_FireLightning();
+  self.attack_finished = time + 0.2;
 };
 
 //============================================================================
 
 
 void() player_rocket1   =[$rockatt1, player_rocket2  ] {self.weaponframe=1;
-	muzzleflash();};
+  muzzleflash();};
 void() player_rocket2   =[$rockatt2, player_rocket3  ] {self.weaponframe=2;};
 void() player_rocket3   =[$rockatt3, player_rocket4  ] {self.weaponframe=3;};
 void() player_rocket4   =[$rockatt4, player_rocket5  ] {self.weaponframe=4;};
@@ -312,87 +312,87 @@ void(float num_bubbles) DeathBubbles;
 
 void() PainSound =
 {
-local float             rs;
+  local float             rs;
 
-//RUNE SERV: cloak rune. No sound
-     if (self.runetype == RN_CLOAK) return;
+  //RUNE SERV: cloak rune. No sound
+  if (self.runetype == RN_CLOAK) return;
 
-	if (self.health < 0)
-		return;
+  if (self.health < 0)
+    return;
 
-	if (damage_attacker.classname == "teledeath")
-	{
-		sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
-		return;
-	}
+  if (damage_attacker.classname == "teledeath")
+  {
+    sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
+    return;
+  }
 
-// water pain sounds
-	if (self.watertype == CONTENT_WATER && self.waterlevel == 3)
-	{
-		DeathBubbles(1);
-		if (random() > 0.5)
-			sound (self, CHAN_VOICE, "player/drown1.wav", 1, ATTN_NORM);
-		else
-			sound (self, CHAN_VOICE, "player/drown2.wav", 1, ATTN_NORM);
-		return;
-	}
+  // water pain sounds
+  if (self.watertype == CONTENT_WATER && self.waterlevel == 3)
+  {
+    DeathBubbles(1);
+    if (random() > 0.5)
+      sound (self, CHAN_VOICE, "player/drown1.wav", 1, ATTN_NORM);
+    else
+      sound (self, CHAN_VOICE, "player/drown2.wav", 1, ATTN_NORM);
+    return;
+  }
 
-// slime pain sounds
-	if (self.watertype == CONTENT_SLIME)
-	{
-// FIX ME       put in some steam here
-		if (random() > 0.5)
-			sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
-		else
-			sound (self, CHAN_VOICE, "player/lburn2.wav", 1, ATTN_NORM);
-		return;
-	}
+  // slime pain sounds
+  if (self.watertype == CONTENT_SLIME)
+  {
+    // FIX ME       put in some steam here
+    if (random() > 0.5)
+      sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
+    else
+      sound (self, CHAN_VOICE, "player/lburn2.wav", 1, ATTN_NORM);
+    return;
+  }
 
-	if (self.watertype == CONTENT_LAVA)
-	{
-		if (random() > 0.5)
-			sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
-		else
-			sound (self, CHAN_VOICE, "player/lburn2.wav", 1, ATTN_NORM);
-		return;
-	}
+  if (self.watertype == CONTENT_LAVA)
+  {
+    if (random() > 0.5)
+      sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
+    else
+      sound (self, CHAN_VOICE, "player/lburn2.wav", 1, ATTN_NORM);
+    return;
+  }
 
-	if (self.pain_finished > time)
-	{
-		self.axhitme = 0;
-		return;
-	}
-	self.pain_finished = time + 0.5;
+  if (self.pain_finished > time)
+  {
+    self.axhitme = 0;
+    return;
+  }
+  self.pain_finished = time + 0.5;
 
-// don't make multiple pain sounds right after each other
+  // don't make multiple pain sounds right after each other
 
-// ax pain sound
-	if (self.axhitme == 1)
-	{
-		self.axhitme = 0;
-		sound (self, CHAN_VOICE, "player/axhit1.wav", 1, ATTN_NORM);
-		return;
-	}
-	
+  // ax pain sound
+  if (self.axhitme == 1)
+  {
+    self.axhitme = 0;
+    sound (self, CHAN_VOICE, "player/axhit1.wav", 1, ATTN_NORM);
+    return;
+  }
 
-	rs = rint((random() * 5) + 1);
 
-	self.noise = "";
-	if (rs == 1)
-		self.noise = "player/pain1.wav";
-	else if (rs == 2)
-		self.noise = "player/pain2.wav";
-	else if (rs == 3)
-		self.noise = "player/pain3.wav";
-	else if (rs == 4)
-		self.noise = "player/pain4.wav";
-	else if (rs == 5)
-		self.noise = "player/pain5.wav";
-	else
-		self.noise = "player/pain6.wav";
+  rs = rint((random() * 5) + 1);
 
-	sound (self, CHAN_VOICE, self.noise, 1, ATTN_NORM);
-	return;
+  self.noise = "";
+  if (rs == 1)
+    self.noise = "player/pain1.wav";
+  else if (rs == 2)
+    self.noise = "player/pain2.wav";
+  else if (rs == 3)
+    self.noise = "player/pain3.wav";
+  else if (rs == 4)
+    self.noise = "player/pain4.wav";
+  else if (rs == 5)
+    self.noise = "player/pain5.wav";
+  else
+    self.noise = "player/pain6.wav";
+
+  sound (self, CHAN_VOICE, self.noise, 1, ATTN_NORM);
+  return;
 };
 
 void()  player_pain1 =  [       $pain1, player_pain2    ] {PainSound();self.weaponframe=0;};
@@ -411,16 +411,16 @@ void()  player_axpain6 =        [       $axpain6,       player_run      ] {};
 
 void() player_pain =
 {
-	if (self.weaponframe)
-		return;
+  if (self.weaponframe)
+    return;
 
-	if (self.invisible_finished > time)
-		return;         // eyes don't have pain frames
+  if (self.invisible_finished > time)
+    return;         // eyes don't have pain frames
 
-        if (self.weapon == IT_AXE)
-		player_axpain1 ();
-	else
-		player_pain1 ();
+  if (self.weapon == IT_AXE)
+    player_axpain1 ();
+  else
+    player_pain1 ();
 };
 
 void() player_diea1;
@@ -432,270 +432,270 @@ void() player_die_ax1;
 
 void() DeathBubblesSpawn =
 {
-local entity    bubble;
+  local entity    bubble;
 
-	if (self.owner.waterlevel != 3)
-		return;
-	bubble = spawn();
-	setmodel (bubble, "progs/s_bubble.spr");
-	setorigin (bubble, self.owner.origin + '0 0 24');
-	bubble.movetype = MOVETYPE_NOCLIP;
-	bubble.solid = SOLID_NOT;
-	bubble.velocity = '0 0 15';
-	bubble.nextthink = time + 0.5;
-	bubble.think = bubble_bob;
-	bubble.classname = "bubble";
-	bubble.frame = 0;
-	bubble.cnt = 0;
-	setsize (bubble, '-8 -8 -8', '8 8 8');
-	self.nextthink = time + 0.1;
-	self.think = DeathBubblesSpawn;
-	self.air_finished = self.air_finished + 1;
-	if (self.air_finished >= self.bubble_count)
-		remove(self);
+  if (self.owner.waterlevel != 3)
+    return;
+  bubble = spawn();
+  setmodel (bubble, "progs/s_bubble.spr");
+  setorigin (bubble, self.owner.origin + '0 0 24');
+  bubble.movetype = MOVETYPE_NOCLIP;
+  bubble.solid = SOLID_NOT;
+  bubble.velocity = '0 0 15';
+  bubble.nextthink = time + 0.5;
+  bubble.think = bubble_bob;
+  bubble.classname = "bubble";
+  bubble.frame = 0;
+  bubble.cnt = 0;
+  setsize (bubble, '-8 -8 -8', '8 8 8');
+  self.nextthink = time + 0.1;
+  self.think = DeathBubblesSpawn;
+  self.air_finished = self.air_finished + 1;
+  if (self.air_finished >= self.bubble_count)
+    remove(self);
 };
 
 void(float num_bubbles) DeathBubbles =
 {
-local entity    bubble_spawner;
-	
-	bubble_spawner = spawn();
-	setorigin (bubble_spawner, self.origin);
-	bubble_spawner.movetype = MOVETYPE_NONE;
-	bubble_spawner.solid = SOLID_NOT;
-	bubble_spawner.nextthink = time + 0.1;
-	bubble_spawner.think = DeathBubblesSpawn;
-	bubble_spawner.air_finished = 0;
-	bubble_spawner.owner = self;
-	bubble_spawner.bubble_count = num_bubbles;
-	return;
+  local entity    bubble_spawner;
+
+  bubble_spawner = spawn();
+  setorigin (bubble_spawner, self.origin);
+  bubble_spawner.movetype = MOVETYPE_NONE;
+  bubble_spawner.solid = SOLID_NOT;
+  bubble_spawner.nextthink = time + 0.1;
+  bubble_spawner.think = DeathBubblesSpawn;
+  bubble_spawner.air_finished = 0;
+  bubble_spawner.owner = self;
+  bubble_spawner.bubble_count = num_bubbles;
+  return;
 };
 
 
 void() DeathSound =
 {
-local float             rs;
+  local float             rs;
 
-//RUNE SERV: cloak rune. No sound
-        if (self.runetype == RN_CLOAK) return;
+  //RUNE SERV: cloak rune. No sound
+  if (self.runetype == RN_CLOAK) return;
 
-	// water death sounds
-	if (self.waterlevel == 3)
-	{
-		DeathBubbles(20);
-		sound (self, CHAN_VOICE, "player/h2odeath.wav", 1, ATTN_NONE);
-		return;
-	}
-	
-	rs = rint ((random() * 4) + 1);
-	if (rs == 1)
-		self.noise = "player/death1.wav";
-	if (rs == 2)
-		self.noise = "player/death2.wav";
-	if (rs == 3)
-		self.noise = "player/death3.wav";
-	if (rs == 4)
-		self.noise = "player/death4.wav";
-	if (rs == 5)
-		self.noise = "player/death5.wav";
+  // water death sounds
+  if (self.waterlevel == 3)
+  {
+    DeathBubbles(20);
+    sound (self, CHAN_VOICE, "player/h2odeath.wav", 1, ATTN_NONE);
+    return;
+  }
 
-	sound (self, CHAN_VOICE, self.noise, 1, ATTN_NONE);
-	return;
+  rs = rint ((random() * 4) + 1);
+  if (rs == 1)
+    self.noise = "player/death1.wav";
+  if (rs == 2)
+    self.noise = "player/death2.wav";
+  if (rs == 3)
+    self.noise = "player/death3.wav";
+  if (rs == 4)
+    self.noise = "player/death4.wav";
+  if (rs == 5)
+    self.noise = "player/death5.wav";
+
+  sound (self, CHAN_VOICE, self.noise, 1, ATTN_NONE);
+  return;
 };
 
 
 void() PlayerDead =
 {
-	self.nextthink = -1;
-// allow respawn after a certain time
-	self.deadflag = DEAD_DEAD;
+  self.nextthink = -1;
+  // allow respawn after a certain time
+  self.deadflag = DEAD_DEAD;
 };
 
 vector(float dm) VelocityForDamage =
 {
-	local vector v;
+  local vector v;
 
-	if (vlen(damage_inflictor.velocity)>0)
-	{
-		v = 0.5 * damage_inflictor.velocity;
-		v = v + (25 * normalize(self.origin-damage_inflictor.origin));
-		v_z = 100 + 240 * random();
-		v_x = v_x + (200 * crandom());
-		v_y = v_y + (200 * crandom());
-		//dprint ("Velocity gib\n");                
-	}
-	else
-	{
-		v_x = 100 * crandom();
-		v_y = 100 * crandom();
-		v_z = 200 + 100 * random();
-	}
+  if (vlen(damage_inflictor.velocity)>0)
+  {
+    v = 0.5 * damage_inflictor.velocity;
+    v = v + (25 * normalize(self.origin-damage_inflictor.origin));
+    v_z = 100 + 240 * random();
+    v_x = v_x + (200 * crandom());
+    v_y = v_y + (200 * crandom());
+    //dprint ("Velocity gib\n");                
+  }
+  else
+  {
+    v_x = 100 * crandom();
+    v_y = 100 * crandom();
+    v_z = 200 + 100 * random();
+  }
 
-	//v_x = 100 * crandom();
-	//v_y = 100 * crandom();
-	//v_z = 200 + 100 * random();
+  //v_x = 100 * crandom();
+  //v_y = 100 * crandom();
+  //v_z = 200 + 100 * random();
 
-	if (dm > -50)
-	{
-	//      dprint ("level 1\n");
-		v = v * 0.7;
-	}
-	else if (dm > -200)
-	{
-	//      dprint ("level 3\n");
-		v = v * 2;
-	}
-	else
-		v = v * 10;
+  if (dm > -50)
+  {
+    //      dprint ("level 1\n");
+    v = v * 0.7;
+  }
+  else if (dm > -200)
+  {
+    //      dprint ("level 3\n");
+    v = v * 2;
+  }
+  else
+    v = v * 10;
 
-	return v;
+  return v;
 };
 
 void(string gibname, float dm) ThrowGib =
 {
-	local   entity new;
+  local   entity new;
 
-	new = spawn();
-	new.origin = self.origin;
-	setmodel (new, gibname);
-	setsize (new, '0 0 0', '0 0 0');
-	new.velocity = VelocityForDamage (dm);
-	new.movetype = MOVETYPE_BOUNCE;
-	new.solid = SOLID_NOT;
-	new.classname = "gib";
-	new.avelocity_x = random()*600;
-	new.avelocity_y = random()*600;
-	new.avelocity_z = random()*600;
-	new.think = SUB_Remove;
-	new.ltime = time;
-	new.nextthink = time + 10 + random()*10;
-	new.frame = 0;
-	new.flags = 0;
+  new = spawn();
+  new.origin = self.origin;
+  setmodel (new, gibname);
+  setsize (new, '0 0 0', '0 0 0');
+  new.velocity = VelocityForDamage (dm);
+  new.movetype = MOVETYPE_BOUNCE;
+  new.solid = SOLID_NOT;
+  new.classname = "gib";
+  new.avelocity_x = random()*600;
+  new.avelocity_y = random()*600;
+  new.avelocity_z = random()*600;
+  new.think = SUB_Remove;
+  new.ltime = time;
+  new.nextthink = time + 10 + random()*10;
+  new.frame = 0;
+  new.flags = 0;
 };
 
 void(string gibname, float dm) ThrowHead =
 {
-	setmodel (self, gibname);
-	self.frame = 0;
-	self.nextthink = -1;
-	self.movetype = MOVETYPE_BOUNCE;
-	self.takedamage = DAMAGE_NO;
-	self.solid = SOLID_NOT;
-	self.view_ofs = '0 0 8';
-	setsize (self, '-16 -16 0', '16 16 56');
-	self.velocity = VelocityForDamage (dm);
-	self.origin_z = self.origin_z - 24;
-	self.flags = self.flags - (self.flags & FL_ONGROUND);
-	self.avelocity = crandom() * '0 600 0';
+  setmodel (self, gibname);
+  self.frame = 0;
+  self.nextthink = -1;
+  self.movetype = MOVETYPE_BOUNCE;
+  self.takedamage = DAMAGE_NO;
+  self.solid = SOLID_NOT;
+  self.view_ofs = '0 0 8';
+  setsize (self, '-16 -16 0', '16 16 56');
+  self.velocity = VelocityForDamage (dm);
+  self.origin_z = self.origin_z - 24;
+  self.flags = self.flags - (self.flags & FL_ONGROUND);
+  self.avelocity = crandom() * '0 600 0';
 };
 
 
 void() GibPlayer =
 {
-	ThrowHead ("progs/h_player.mdl", self.health);
-	ThrowGib ("progs/gib1.mdl", self.health);
-	ThrowGib ("progs/gib2.mdl", self.health);
-	ThrowGib ("progs/gib3.mdl", self.health);
+  ThrowHead ("progs/h_player.mdl", self.health);
+  ThrowGib ("progs/gib1.mdl", self.health);
+  ThrowGib ("progs/gib2.mdl", self.health);
+  ThrowGib ("progs/gib3.mdl", self.health);
 
-	self.deadflag = DEAD_DEAD;
+  self.deadflag = DEAD_DEAD;
 
-	if (damage_attacker.classname == "teledeath")
-	{
-		sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
-		return;
-	}
+  if (damage_attacker.classname == "teledeath")
+  {
+    sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
+    return;
+  }
 
-	if (damage_attacker.classname == "teledeath2")
-	{
-		sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
-		return;
-	}
-		
-	if (random() < 0.5)
-		sound (self, CHAN_VOICE, "player/gib.wav", 1, ATTN_NONE);
-	else
-		sound (self, CHAN_VOICE, "player/udeath.wav", 1, ATTN_NONE);
+  if (damage_attacker.classname == "teledeath2")
+  {
+    sound (self, CHAN_VOICE, "player/teledth1.wav", 1, ATTN_NONE);
+    return;
+  }
+
+  if (random() < 0.5)
+    sound (self, CHAN_VOICE, "player/gib.wav", 1, ATTN_NONE);
+  else
+    sound (self, CHAN_VOICE, "player/udeath.wav", 1, ATTN_NONE);
 };
 
 void() PlayerDie =
 {
-	local   float   i;
-	
-	self.items = self.items - (self.items & IT_INVISIBILITY);
-	self.invisible_finished = 0;    // don't die as eyes
-	self.invincible_finished = 0;
-	self.super_damage_finished = 0;
-	self.radsuit_finished = 0;
-	self.modelindex = modelindex_player;    // don't use eyes
+  local   float   i;
 
-	DropBackpack();
-	
-	self.weaponmodel="";
-	self.view_ofs = '0 0 -8';
-	self.deadflag = DEAD_DYING;
-	self.solid = SOLID_NOT;
-	self.flags = self.flags - (self.flags & FL_ONGROUND);
-	self.movetype = MOVETYPE_TOSS;
-	if (self.velocity_z < 10)
-		self.velocity_z = self.velocity_z + random()*300;
+  self.items = self.items - (self.items & IT_INVISIBILITY);
+  self.invisible_finished = 0;    // don't die as eyes
+  self.invincible_finished = 0;
+  self.super_damage_finished = 0;
+  self.radsuit_finished = 0;
+  self.modelindex = modelindex_player;    // don't use eyes
 
-//RUNE SERV: Divine wind makes the guy explode if he dies.
-        if (self.runetype == RN_BOMB)
-        {
-           WriteByte (MSG_BROADCAST, SVC_TEMPENTITY);
-           WriteByte (MSG_BROADCAST, TE_EXPLOSION);
-           WriteCoord (MSG_BROADCAST, self.origin_x);
-           WriteCoord (MSG_BROADCAST, self.origin_y);
-           WriteCoord (MSG_BROADCAST, self.origin_z);
+  DropBackpack();
 
-           T_RadiusDamage (self, self, 300,self);
-           if (self.health > -41) self.health = self.health - random()*50+1;
-        }
+  self.weaponmodel="";
+  self.view_ofs = '0 0 -8';
+  self.deadflag = DEAD_DYING;
+  self.solid = SOLID_NOT;
+  self.flags = self.flags - (self.flags & FL_ONGROUND);
+  self.movetype = MOVETYPE_TOSS;
+  if (self.velocity_z < 10)
+    self.velocity_z = self.velocity_z + random()*300;
 
-	if (self.health < -40)
-	{
-		GibPlayer ();
-		return;
-	}
+  //RUNE SERV: Divine wind makes the guy explode if he dies.
+  if (self.runetype == RN_BOMB)
+  {
+    WriteByte (MSG_BROADCAST, SVC_TEMPENTITY);
+    WriteByte (MSG_BROADCAST, TE_EXPLOSION);
+    WriteCoord (MSG_BROADCAST, self.origin_x);
+    WriteCoord (MSG_BROADCAST, self.origin_y);
+    WriteCoord (MSG_BROADCAST, self.origin_z);
 
-	DeathSound();
-	
-	self.angles_x = 0;
-	self.angles_z = 0;
-	
-        if (self.weapon == IT_AXE)
-	{
-		player_die_ax1 ();
-		return;
-	}
-	
-//RUNE SERV: I use temp1, so disable this. It seems useless anyway.
-//        i = cvar("temp1");
-//        if (!i)
-		i = 1 + floor(random()*6);
-	
-	if (i == 1)
-		player_diea1();
-	else if (i == 2)
-		player_dieb1();
-	else if (i == 3)
-		player_diec1();
-	else if (i == 4)
-		player_died1();
-	else
-		player_diee1();
+    T_RadiusDamage (self, self, 300,self);
+    if (self.health > -41) self.health = self.health - random()*50+1;
+  }
+
+  if (self.health < -40)
+  {
+    GibPlayer ();
+    return;
+  }
+
+  DeathSound();
+
+  self.angles_x = 0;
+  self.angles_z = 0;
+
+  if (self.weapon == IT_AXE)
+  {
+    player_die_ax1 ();
+    return;
+  }
+
+  //RUNE SERV: I use temp1, so disable this. It seems useless anyway.
+  //        i = cvar("temp1");
+  //        if (!i)
+  i = 1 + floor(random()*6);
+
+  if (i == 1)
+    player_diea1();
+  else if (i == 2)
+    player_dieb1();
+  else if (i == 3)
+    player_diec1();
+  else if (i == 4)
+    player_died1();
+  else
+    player_diee1();
 
 };
 
 void() set_suicide_frame =
 {       // used by kill command and diconnect command
-	if (self.model != "progs/player.mdl")
-		return; // allready gibbed
-	self.frame = $deatha11;
-	self.solid = SOLID_NOT;
-	self.movetype = MOVETYPE_TOSS;
-	self.deadflag = DEAD_DEAD;
-	self.nextthink = -1;
+  if (self.model != "progs/player.mdl")
+    return; // allready gibbed
+  self.frame = $deatha11;
+  self.solid = SOLID_NOT;
+  self.movetype = MOVETYPE_TOSS;
+  self.deadflag = DEAD_DEAD;
+  self.nextthink = -1;
 };
 
 

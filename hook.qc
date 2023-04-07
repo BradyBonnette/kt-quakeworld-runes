@@ -53,23 +53,23 @@ float ACTIVATE_HOOK = 95;       // impulse constant
 //--------------------------------------------------------------------
 void () DropHook =
 {
-      local entity linkptr;
-      local entity nextptr;
+  local entity linkptr;
+  local entity nextptr;
 
-	// removes flag of hook instance being present
-	self.owner.hook = self.owner.hook - (self.owner.hook & HOOK_OUT);
-        
-	// removes chain
-	linkptr = self.goalentity;
-	while (linkptr != world)
-	{
-		nextptr = linkptr.goalentity;
-		remove (linkptr);
-		linkptr = nextptr;
-	}
-	
-	// removes hook
-	remove (self);
+  // removes flag of hook instance being present
+  self.owner.hook = self.owner.hook - (self.owner.hook & HOOK_OUT);
+
+  // removes chain
+  linkptr = self.goalentity;
+  while (linkptr != world)
+  {
+    nextptr = linkptr.goalentity;
+    remove (linkptr);
+    linkptr = nextptr;
+  }
+
+  // removes hook
+  remove (self);
 };
 
 
@@ -78,8 +78,8 @@ void () DropHook =
 //--------------------------------------------------------------------
 void () LinkPos =
 {
-	setorigin (self, self.owner.origin + ((self.enemy.origin + '0 0 16') - self.owner.origin) * self.weapon);
-	self.nextthink = time + 0.01;
+  setorigin (self, self.owner.origin + ((self.enemy.origin + '0 0 16') - self.owner.origin) * self.weapon);
+  self.nextthink = time + 0.01;
 };
 
 
@@ -88,34 +88,34 @@ void () LinkPos =
 //--------------------------------------------------------------------
 entity (entity head, entity tail, float num) CreateChain =
 {
-	local entity link, prevlink;
-	local float linknum;
+  local entity link, prevlink;
+  local float linknum;
 
-	linknum = num;
-	num = num + 1;
-	prevlink = world;
-	while (linknum > 0)
-	{
-		link = spawn();
-		link.goalentity = prevlink;
-		prevlink = link;
-		link.owner = head;
-		link.enemy = tail;
-		link.weapon = linknum / num;
-		link.movetype = MOVETYPE_NOCLIP;
-		link.solid = SOLID_NOT;
-		link.angles_z = 51 * linknum;
-		link.angles_y = 41 * linknum;
-		link.angles_x = 31 * linknum;
-		link.avelocity = '310 410 510';
-                setmodel (link, "progs/s_spike.mdl");
-		setsize (link, '0 0 0', '0 0 0');
-		setorigin (link, head.origin + ((tail.origin + '0 0 16') - head.origin) * link.weapon);
-		link.nextthink = time + 0.01;
-		link.think = LinkPos;
-		linknum = linknum - 1;
-	}
-	return link;
+  linknum = num;
+  num = num + 1;
+  prevlink = world;
+  while (linknum > 0)
+  {
+    link = spawn();
+    link.goalentity = prevlink;
+    prevlink = link;
+    link.owner = head;
+    link.enemy = tail;
+    link.weapon = linknum / num;
+    link.movetype = MOVETYPE_NOCLIP;
+    link.solid = SOLID_NOT;
+    link.angles_z = 51 * linknum;
+    link.angles_y = 41 * linknum;
+    link.angles_x = 31 * linknum;
+    link.avelocity = '310 410 510';
+    setmodel (link, "progs/s_spike.mdl");
+    setsize (link, '0 0 0', '0 0 0');
+    setorigin (link, head.origin + ((tail.origin + '0 0 16') - head.origin) * link.weapon);
+    link.nextthink = time + 0.01;
+    link.think = LinkPos;
+    linknum = linknum - 1;
+  }
+  return link;
 };
 
 
@@ -124,47 +124,47 @@ entity (entity head, entity tail, float num) CreateChain =
 //--------------------------------------------------------------------
 void () HookPull =
 {
-        local vector vel, spray;
-        local float v;
+  local vector vel, spray;
+  local float v;
 
 
-        if (((self.owner.hook & HOOK_ON) != HOOK_ON)
-                 || (self.owner.teleport_time > time)
-                 || (self.owner.deadflag)
-                 || (self.enemy.solid == SOLID_NOT) )       // if target dies
-	{
-                DropHook();
-                return;
-	}
- 
-	if (self.enemy.takedamage)
-		T_Damage (self.enemy, self, self.owner, 3);
+  if (((self.owner.hook & HOOK_ON) != HOOK_ON)
+      || (self.owner.teleport_time > time)
+      || (self.owner.deadflag)
+      || (self.enemy.solid == SOLID_NOT) )       // if target dies
+  {
+    DropHook();
+    return;
+  }
 
-        if (self.enemy.solid == SOLID_SLIDEBOX)
-	{
-		sound (self, CHAN_WEAPON, "blob/land1.wav", 1, ATTN_NORM);
-		spray_x = 100 * crandom();
- 		spray_y = 100 * crandom();
-		spray_z = 100 * crandom() + 50;
-		SpawnBlood (self.origin, spray, 20);
-		setorigin (self, self.enemy.origin + self.enemy.mins + self.enemy.size * 0.5);
-	}
+  if (self.enemy.takedamage)
+    T_Damage (self.enemy, self, self.owner, 3);
 
-        self.velocity = self.enemy.velocity;
-		
-        vel = self.origin - (self.owner.origin + '0 0 16');
-        v = vlen (vel);
-        if (v <= 100)
-        {
-                vel = normalize(vel) * v * 7;
-        }
-        if ( v > 100 )
-        {
-                vel = normalize(vel) * 700;
-        }
-        self.owner.velocity = vel;
-        
-        self.nextthink = time + 0.1;
+  if (self.enemy.solid == SOLID_SLIDEBOX)
+  {
+    sound (self, CHAN_WEAPON, "blob/land1.wav", 1, ATTN_NORM);
+    spray_x = 100 * crandom();
+    spray_y = 100 * crandom();
+    spray_z = 100 * crandom() + 50;
+    SpawnBlood (self.origin, spray, 20);
+    setorigin (self, self.enemy.origin + self.enemy.mins + self.enemy.size * 0.5);
+  }
+
+  self.velocity = self.enemy.velocity;
+
+  vel = self.origin - (self.owner.origin + '0 0 16');
+  v = vlen (vel);
+  if (v <= 100)
+  {
+    vel = normalize(vel) * v * 7;
+  }
+  if ( v > 100 )
+  {
+    vel = normalize(vel) * 700;
+  }
+  self.owner.velocity = vel;
+
+  self.nextthink = time + 0.1;
 };
 
 
@@ -173,63 +173,63 @@ void () HookPull =
 //--------------------------------------------------------------------
 void() ChainTouch =
 {
-        local float cells;
-        if ((self.owner.hook & HOOK_ON) != HOOK_ON)
-	{
-		DropHook();
-		return;
-	}
+  local float cells;
+  if ((self.owner.hook & HOOK_ON) != HOOK_ON)
+  {
+    DropHook();
+    return;
+  }
 
-     if  (self.owner.runetype == RN_INTANG && self.owner.runevar == 1 && other.classname == "player")
-     {
-          DropHook();
-          return;
-     }
+  if  (self.owner.runetype == RN_INTANG && self.owner.runevar == 1 && other.classname == "player")
+  {
+    DropHook();
+    return;
+  }
 
-	if (other.takedamage)
-        {
-                if (other.runetype == RN_BLINK && other.runetime >= time)
-                {
-                        DropHook();
-                        return;
-                }
-                else
-                {
-                        T_Damage (other, self, self.owner, 10 );
-                }
-        }
-//  *************************************************************************
-//  take shock for hooking someone with electric rune
-        if (other.runetype == RN_ZAP)
-        {
-                cells = other.ammo_cells;
-                sound (self.owner, CHAN_AUTO, "weapons/lstart.wav", 1, ATTN_NORM);
-                sound (other, CHAN_AUTO, "weapons/lstart.wav", 1, ATTN_NORM);
-                other.runevar = 30;
-                T_Damage (self.owner, other, other, 10*cells);
-                T_Damage (other, self.owner, self.owner, 10*cells);
-                other.runevar = 0;
-                other.ammo_cells = 0;
-        }
+  if (other.takedamage)
+  {
+    if (other.runetype == RN_BLINK && other.runetime >= time)
+    {
+      DropHook();
+      return;
+    }
+    else
+    {
+      T_Damage (other, self, self.owner, 10 );
+    }
+  }
+  //  *************************************************************************
+  //  take shock for hooking someone with electric rune
+  if (other.runetype == RN_ZAP)
+  {
+    cells = other.ammo_cells;
+    sound (self.owner, CHAN_AUTO, "weapons/lstart.wav", 1, ATTN_NORM);
+    sound (other, CHAN_AUTO, "weapons/lstart.wav", 1, ATTN_NORM);
+    other.runevar = 30;
+    T_Damage (self.owner, other, other, 10*cells);
+    T_Damage (other, self.owner, self.owner, 10*cells);
+    other.runevar = 0;
+    other.ammo_cells = 0;
+  }
 
-        if (other.solid == SOLID_SLIDEBOX)
-        {
-                sound (self, CHAN_WEAPON, "shambler/smack.wav", 1, ATTN_NORM); 
-                SpawnBlood (self.origin, self.velocity, 10);
-                setorigin (self, other.origin + other.mins + other.size * 0.5);
-        }
-        else
-        {
-		sound (self, CHAN_WEAPON, "player/axhit2.wav", 1, ATTN_NORM);
-                self.avelocity = '0 0 0';
-	}
+  if (other.solid == SOLID_SLIDEBOX)
+  {
+    sound (self, CHAN_WEAPON, "shambler/smack.wav", 1, ATTN_NORM); 
+    SpawnBlood (self.origin, self.velocity, 10);
+    setorigin (self, other.origin + other.mins + other.size * 0.5);
+  }
+  else
+  {
+    sound (self, CHAN_WEAPON, "player/axhit2.wav", 1, ATTN_NORM);
+    self.avelocity = '0 0 0';
+  }
 
-	self.velocity = other.velocity;
+  self.velocity = other.velocity;
 
-	self.enemy = other;
-	self.nextthink = time + 0.1;
-	self.think = HookPull;
-	self.touch = SUB_Null;
+  self.enemy = other;
+  self.nextthink = time + 0.1;
+  self.think = HookPull;
+  self.touch = SUB_Null;
 };
 
 
@@ -238,28 +238,28 @@ void() ChainTouch =
 //--------------------------------------------------------------------
 void(entity myself) InitiateHook =
 {
-	local entity newhook;
+  local entity newhook;
 
-	newhook = spawn ();
-//  ***********************************************************************
-        newhook.classname = "hook";
-//  ***********************************************************************
-	newhook.owner = myself;
-	newhook.movetype = MOVETYPE_FLY;
-        newhook.solid = SOLID_BBOX;
-        setmodel (newhook, "progs/v_spike.mdl");
-        setsize (newhook, '0 0 0', '0 0 0');
-	makevectors (myself.v_angle);
-	setorigin (newhook, myself.origin + (v_forward*16) + '0 0 16' );
-        newhook.velocity = v_forward*2000;
-	newhook.angles = vectoangles(newhook.velocity);
-        newhook.avelocity = '0 0 600';
-	sound (myself, CHAN_WEAPON, "weapons/ax1.wav", 1, ATTN_NORM);
-	
-	newhook.touch = ChainTouch;
-        newhook.nextthink = time + 2; //.7;     // reach length of grappling hook
-	newhook.think = DropHook;
-	newhook.goalentity = CreateChain (newhook, myself, 8);
+  newhook = spawn ();
+  //  ***********************************************************************
+  newhook.classname = "hook";
+  //  ***********************************************************************
+  newhook.owner = myself;
+  newhook.movetype = MOVETYPE_FLY;
+  newhook.solid = SOLID_BBOX;
+  setmodel (newhook, "progs/v_spike.mdl");
+  setsize (newhook, '0 0 0', '0 0 0');
+  makevectors (myself.v_angle);
+  setorigin (newhook, myself.origin + (v_forward*16) + '0 0 16' );
+  newhook.velocity = v_forward*2000;
+  newhook.angles = vectoangles(newhook.velocity);
+  newhook.avelocity = '0 0 600';
+  sound (myself, CHAN_WEAPON, "weapons/ax1.wav", 1, ATTN_NORM);
+
+  newhook.touch = ChainTouch;
+  newhook.nextthink = time + 2; //.7;     // reach length of grappling hook
+  newhook.think = DropHook;
+  newhook.goalentity = CreateChain (newhook, myself, 8);
 };
 
 
@@ -268,30 +268,30 @@ void(entity myself) InitiateHook =
 //--------------------------------------------------------------------
 void() CheckGrapHook = 
 {
-        if (((self.hook & HOOK_OUT) != HOOK_OUT) && (self.impulse == ACTIVATE_HOOK))
-	{
-		// flags that one instance of hook is spawned
-		self.hook = self.hook | HOOK_OUT;
-	
-		// flags last activated hook impulse as being ON 
-		self.hook = self.hook | HOOK_ON;   
+  if (((self.hook & HOOK_OUT) != HOOK_OUT) && (self.impulse == ACTIVATE_HOOK))
+  {
+    // flags that one instance of hook is spawned
+    self.hook = self.hook | HOOK_OUT;
 
-		InitiateHook (self);
-		return;
-	}
+    // flags last activated hook impulse as being ON 
+    self.hook = self.hook | HOOK_ON;   
 
-//  *************************************************************************
-//  removed, ACTIVATE_HOOK toggles hook on and off
-//        if (((self.hook & HOOK_OUT) == HOOK_OUT) && (self.impulse == TERMINATE_HOOK))
-//  *************************************************************************
+    InitiateHook (self);
+    return;
+  }
 
-        if (((self.hook & HOOK_OUT) == HOOK_OUT) && (self.impulse == ACTIVATE_HOOK))
-	{
-		// flags last activated hook impulse as being OFF
-		self.hook = self.hook - (self.hook & HOOK_ON);
-		
-		return;
-	}
+  //  *************************************************************************
+  //  removed, ACTIVATE_HOOK toggles hook on and off
+  //        if (((self.hook & HOOK_OUT) == HOOK_OUT) && (self.impulse == TERMINATE_HOOK))
+  //  *************************************************************************
+
+  if (((self.hook & HOOK_OUT) == HOOK_OUT) && (self.impulse == ACTIVATE_HOOK))
+  {
+    // flags last activated hook impulse as being OFF
+    self.hook = self.hook - (self.hook & HOOK_ON);
+
+    return;
+  }
 }; 
 
 
