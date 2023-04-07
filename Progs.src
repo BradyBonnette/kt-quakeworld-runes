@@ -1,0 +1,35 @@
+./qwprogs.dat
+
+defs.qc
+flash.qc  // flashlight code
+subs.qc
+combat.qc
+items.qc
+disc.qc  // for shooting star rune
+hook.qc   // grappling hook code
+starbrst.qc //starburst rune/weapon/whatever...
+fishgren.qc //Fish grenade!
+guided.qc
+weapons.qc
+world.qc
+client.qc
+server.qc
+player.qc
+
+fight.qc
+ai.qc
+monsters.qc
+shambler.qc
+
+runes10.qc //Rune Serv runes #1-10 code
+runes20.qc //Rune Serv runes #11-20 code
+runes30.qc //Rune Serv runes #21-30 code
+runes40.qc //Rune Serv runes #31-40 code
+runes50.qc //Rune Serv runes #41-50 code
+runeserv.qc //Rune Serv code
+doors.qc
+buttons.qc
+triggers.qc
+plats.qc
+misc.qc
+junk.qc

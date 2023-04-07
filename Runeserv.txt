@@ -1,0 +1,778 @@
+
+Title    : Artifact QuakeWorld (rune serv)
+Filename : Rune.ZIP
+Version  : 2.20
+Date     : 03-October-98
+Author   : Nick Bousman (SiNGE)
+           E-mail   : singe@ix.netcom.com
+Modifier : Randy Bancroft (Cannon Fodder)
+           E-mail   : slimbo@vabch.com
+                      quake@vabch.com
+
+ Type of Mod
+ ------------
+ Quake C  : yes
+ Sound    : no
+ MDL      : yes (just one, takes no longer than a skin to down load)
+ Level    : no
+
+
+ Format of Mod
+ --------------
+ qwprogs.dat file.
+
+
+ Forenote:
+ ----------
+     Here's a patch I've been working with to enhance the quality of
+ deathmatch, and make it a little more interesting.
+
+[    My Comments will be inclosed in brackets, like this statement.
+[Nick did such a great job with the original, there is no need to rewrite
+[the entire package for my simple modification. Cannon Fodder
+
+
+ Description:
+ -------------
+     It's Quake deathmatching, but enhanced. You might have seen the runes in
+ CTF.. I think they're a kick ass idea. I also play on an awesome multi-mod
+ server written almost entirely by The Red Knight called SUPER_MODS! It also
+ has some runes, but a few more, and more interesting ones. Well, I thought,
+ what if I created a server where a HUGE variety of special runes that give
+ different abilities were all over the level. So I created this. There's a
+ number of runes all over the level. Sometimes new ones enter. They move
+ around occasionally. A player will come across a rune, and it gives them
+ some special ability or quality which helps them. Each player can only have
+ one rune at a time (Intentional design), and they lose it when they die.
+ Other than that, that's basically the point. See the list of runes below
+ and try to familiarize yourself with them. There's a lot, and not all are
+ simple. Oh.. and some runes require the use of a button to use whatever
+ ability it is. Bind whichever key you wish to use to IMPULSE 100.
+
+
+ Helpful Instructions:
+ ----------------------
+[ - IMPULSE 100 or ACTIVATE is "The Button". BIND THIS KEY! If a rune requires
+[    a button.. this is it.
+[    How to bind "The Button" to the M key:
+[       1 - Press the ~ key (next to the 1 key above Q).
+[       2 - Type: bind m "impulse 100" (including quotes)
+[            or   bind m activate
+[ - IMPULSE 99 or SHOW will tell you what rune you currently have.
+[ - IMPULSE 98 or DROPRUNE will rid you of your current rune. Not drop it mind
+[    you.. just deactivate it.
+[ - IMPULSE 97, RUNEHELP, or RUNES Brings up the server blurb again.
+[ - IMPULSE 96 or UTURN Does a U-turn.  If you've ever played Duke Nukem, it is the
+[    same as the backspace key.
+[ - IMPULSE 95, HOOK, +HOOK, or -HOOK Toggles the grappling hook.  Hit it once,
+[    it goes out and pulls you up.  You stay attached until the impulse is sent
+[    again.  Hitting other players will cause it to stick in them, pull them to
+[    you, and do damage the whole time it's hooked.  If you hit other objects,
+[    they bounce around from the force of impact and the hook will return
+[    immediately.  To prevent the hook from returning immediately, the user
+[    needs to setinfo hook to hold.  i.e. "setinfo hook hold".  It does not
+[    replace your weapon, so you can pull up and still shoot.
+[ - IMPULSE 101 or LIGHT Toggles flash light on and off.
+[ - IMPULSEs above 101 and between 20 and 90 will brings up the server
+[    blurb again.
+  - temp1 in the server.cfg defines the MAX number of runes in the level.
+[ - Added system variable "localinfo sr".  Sets starting rune for players.
+[    If not set or set to zero "0", players start without any runes and must
+[    find their own.  If set to the number of a specific rune (see rune list
+[    below), every time a player joins the game or restarts after death they
+[    have the specified rune.  0 = no starting rune.  1 - 42 = rune number.  
+[    43 - 100 = randomly assigned.
+[ - Added system variable "localinfo intangflag".  Determines if a player
+[    can pick up item (quad, health, weapons, ammo, etc ...) while intangible.
+[    Default value is 0.  Zero means don't pickup.  Any value greater than
+[    zero means player can pick up items while intangible.
+[ - Added system variable "localinfo cursetime".  Determines if and how long
+[    before a player can drop a CURSED rune.  Default value is 0.  Zero means
+[    player can not drop cursed rune.  Any value greater than zero is time in
+[    seconds before player can drop CURSED rune.
+[ - Added system variable "localinfo cloakflag".  Determines if player will
+[    use eyes model or be completely invisible while cloaked.  Default value
+[    is 0.  Zero means use eyes model.  Any value greater than zero, player
+[    is completely invisible.
+[ - Added system variable "localinfo darkflag".  Determines if Rune of
+[    Darkness will turn out all lights or just ambient lighting.  Default is
+[    zero.  Zero equal ambient lighting only.  Any value greater than zero
+[    will turn out all lighting.  This includes torches, flickering lights,
+[    etc ... 
+[ - If samelevel is set to "4", levels are unexitable, and when levels end,
+[    the next level is random, which is cool.
+[ - If samelevel is set to anything other than "0" when you try to exit, it
+[    will rapidly decrease your armor then health as long as you stay in
+[    the exit portal.  Normally you would just explode.  The exception is
+[    the starting level. Anyone can exit at any time.
+[ - Will announce when Quad, Pent, Enviro suit, or Ring of Shadows reappear.
+[ - When logging on, a 4 page welcome/help is displayed.  Pressing fire moves
+[    to next screen.  After 4th screen player respawns.  While welcome/help
+[    screens are shown player is invisible and can not interact with game.
+[    They may move around their immediate are.  Only displayed when player
+[    first logs on.
+[ - If a player suicides more than 5 time within 30 seconds, his name is
+[    changed to "Ima Butthead" with a message on their screen saying "You are
+[    a Butthead!"
+[ - If a player suicides more than 10 time within 30 seconds, they are
+[    disconnect.  Their console will then atempt to connect to "www.fbi.gov".
+[    The destination can be changed by setting "localinfo op" to the selected
+[    other place (op).  Example:  serverinfo op www.id.com:27501
+[ - Added throwaxe.mdl for CURSED Rune of the AXE and Vorpal Axe Rune.  It 
+[    must go in the "progs" subdirectory (or folder if you prefer) under the 
+[    directory you have this mod installed in.  If not, users will not be able
+[    to log on.
+[ - Added Neutron Bomb Rune.  It will kill all players 20 seconds after pick up
+[    unless the holder is killed (he can't suicide), other player is under
+[    water, slime, or lava, or other player has Rune of Environmental
+[    Protection.  The holder of this rune will be followed by a brightly
+[    glowing pentagram.  This is a special rune due to it's destructive force.
+[    It is not used unless Admin sets localinfo neutronflag xx.  Default is
+[    zero (rune not used).  Any value greater than zero determines how long
+[    after the last rune detonated until the next rune is dropped. It is
+[    reference to timelimit.  Calculated as timelimit divided neutronflag.
+[    Next drop time will not be less than one minute.  If timelimit is not
+[    set, it will be on hour or next map until a new Neutron Bomb Rune is
+[    dropped.  There will only be one Neutron Bomb Rune on a level at a time.
+[    It must be picked up.  It will not be automatically assigned by using
+[    localinfo sr.
+
+
+
+ Rune List:
+ -----------
+ 1 - Rune of Regeneration - You regenerate your health. If you have armor
+      you regenerate that too.
+[     Regenerates health to 200 and armor to max for it's type.
+[     (BLUE = 100, YELLOW = 150, RED = 200)  Armor still switches if you
+[     run over better armor than you presently have.
+ 2 - Rune of Resistance - You take only 1/2 damage from attacks. Makes the
+      invincible sound when damaged.
+ 3 - Rune of Haste - You shoot all weapons a lot faster than normal. You
+      also make a cool growly sound. Lightning gun isn't affected. Nailguns
+      shoot nails that move twice as fast.
+ 4 - Rune of Environmental Protection - Slime and lava GIVE health instead of
+      damaging you. Water also gives health if you stay in long enough. The
+      Button is Enviro-Jump. When in liquids it makes a high jump upwards.
+      This is helpful to get out of the many would-be lava traps. You can't
+      drown. You're immune to spike traps, lavaballs, falling real far,
+      getting squished, ice traps, death spots, radiation damage, death orbs,
+      Electric Rune zaps, and other stuff.
+ 5 - Berserker Rune - Very simple. You deal 6x damage, you take 3x damage.
+       You also bleed a lot.
+ 6 - Rune of Recall - Press The Button, and your recall point is set. From
+      now on, every time The Button is pressed, you'll teleport back to that
+      spot. Good for getting out of tough situations into a nice safe place
+      to rest. It's almost a porta-camper. Press The Button when on your
+      recall point to reset the point.
+ 7 - Electric Rune - You're electrified! Anyone in a certain radius of you
+      gets zapped. You get +10 cells when you get the rune, and each zap it
+      does uses a cell. Do NOT jump into the water if you're electrified.
+      This would be BAD. Players with Electric rune will flash and have
+      bolts flickering around them.
+ 8  - Rune of Cloaking - You're very quiet and ninja-like. Sneak up
+[      on people, shoot 'em, and they'll never hear it. You're dificult
+[      to see because you appear as a pair of eyes (like ring of shadows) to
+[      other players.  When you shoot or get hurt, you uncloak for a few
+[      seconds. VERY stealthy-fun.  Admin may choose to allow total
+[      invisibility by setting localinfo cloakflag 1.
+ 9  - Rune of Divine Wind - Press The Button, and in three clicks you'll
+       explode, gibbing ANYONE in sight. If someone kills you before you can
+       reach that button, you'll still explode, but the blast won't be as
+       powerful. Players with this have a spinny grenade above their head.
+ 10 - Death Spots - Press The Button to create a death spot. You lose 20
+       health. Run away fast, and in a few seconds the spot will become
+       invisible. The first person who touches it, explodes. It blows up on
+       it's own after a while, but it's more fun just to watch someone run
+       into it and spontaeously gib. :)
+ 11 - Orb of Death - A cool yellow orb (yes, we've seen this effect before)
+       rotates around out slowly. It severly bashes anybody who gets in its
+       way, besides you. Oh, and when you die.. it might start bouncing
+       around aimlessly, lost without its master.
+ 12 - Rune of Camouflage - Don't move, don't shoot, and they can't see you.
+ 13 - Rune of Uncontrolable Jumping - Anybody who sees you from a certain
+       distance is just so excited, they can't stop jumping!
+ 14 - Action Movie Arsenal - Your ammo comes from an endless supply. It fills
+       up slowly and steadily. When you get all the ammo, you get the
+       corresponding ammo.
+ 15 - Vampiric Rune - You get all of the damage you do in attacks back to
+[      you in health.  If the Rune of Darkness is active, you get double
+[      the amount of damage back in heath, max health is 200, and can see
+[      in shades of red.
+ 16 - Rune of Shielding - Press The Button, and for a few seconds you're
+       invincible. It takes a few seconds to recharge though.       
+ 17 - Rune of Strength - You deal double damage. 'Nuff said. 
+ 18 - Rune of Radioactivity - Press The Button, and in 5 seconds the area
+       will be irradiated for 45 seconds. Anyone in that area will slowly die
+       of radiation poisoning until they move out of the area. You can only
+       set three irradiation points at a time, and you can't set one in view
+       of another. When you die, you also set radiation points.
+ 19 - Switch Rune - Aim at another, and press The Button. You'll instantly
+       switch places, ammo, health, weapons, and items with them.
+ 20 - Ice Traps - Much like the Death Spots, you set a spot and in a few
+       seconds, stay away from that area. The first unfortunate soul to walk
+       there will become frozen for some time. They will be comepletely
+       immobile until their time is up, or they're dead.
+[21 - Gravity Rune - Press The Button to drop a powerful gravity well that
+[      lasts for ten seconds. Requires ten seconds to recharge.  It
+[      sucks players in. If they touch the sphere, SPLAT!  They get crushed
+[      to death like a black hole.  It does affect you after a five second
+[      delay.  So run after dropping.  Press The Button again to remove it
+[      before the ten second timer exspires. The gravity wells also
+[      affect rockets, nails, ice traps, death spots, and some other stuff.
+[      How long it last and how long it takes to recharge can be changed by
+[      the system admin by us "localinfo gravsucktime XX" and "localinfo
+[      gravrechargetime XX".  Replace "XX" with the time in seconds.
+ 22 - Impact Rune - All damage you do to someone basically slams them against
+       the wall. Big kickback for those hit. It also does slightly more
+       damage than normal. You can also slam yourself into an opponent,
+       doing them some serious bone cracking.
+ 23 - Rune of Vengance - Any damage done to you is also done to the attacker.
+       People with this rune have a REALLY huge head on them. Scary!
+ 24 - Shub Hat - This one is silly. It puts a huge rotating Shub over the
+       player. It's only use is makes you a little harder to hit, and it's
+       distracting. And you can't tell which way the guy is facing. And
+       opponents are vulnerable because of their constant laughter.
+ 25 - Rune of Repulsion - You push back people, rockets, and nifty stuff
+       like Death Spots and Ice Traps.
+ 26 - Rune of Dual Recall - Like recall, but not quite. Press The Button and
+       you teleport to the spot you got the rune. Press it again, and you
+       teleport to where you teleported last. And so it goes...
+ 27 - Rune of Weirdness - Ethereal little bubbles float off you. Press The
+       Button and you blow one in the direction you're facing. Die, and you
+       let off a few as well. If people touch these bubbles, strange
+       hallucinogenic things happen to them.
+ 28 - Phoenix Rune - Three extra lives.  Instead of respawning after you die,
+       you come back to life over your previous body, health fully restored,
+       all weapons intact, and 15 seconds of Quad power.
+[      Fixed a bug that would not let you respawn if you died in any
+[      liquid. i.e. lava, slime, and even water.
+ 29 - Rune of Fire Walking - You leave a harmful trail of fire behind you when
+       you run.  Helpful in losing those annoying people who chase you.  Burn
+       people's legs off!
+ 30 - HoloRune - Press The Button and create an image of yourself where you
+       stand.  It looks like you, it turns like you, it moves like you, but
+       it remains stationary.  Each goes away in about 30 seconds.  You can
+       have a maximum of five out at a time.
+ 31 - Rune of Good Health - You imediately get +100 health. Your maximum
+       health becomes 666. Keep getting health box after health box after...
+[      Now works in QuakWorld.
+[32 - Blink Rune - Press The Button and you'll randomly teleport to a respawn
+[      point or teleporter pad.  Players with this rune have a small dot 
+[      floating above their head.  Now works in QuakeWorld.
+
+
+ NEW RUNES:
+ ------------
+[33 - Rune of Darkness - This one will give you twenty second of darkness when
+[      activated.  It becomes night time through out the level.  The bearer
+[      of this rune gets a flash light that can be toggled on and off with the
+[      active impulse while his/her Rune of Darkness is active.  After rune
+[      expires, you must wait twenty seconds before reactivating.
+[34 - Anti-missile Rune - You take no damage from rockets or grenades.  It
+[      will even push them away like the Rune of Repulsion.  Only rockets
+[      and grenades are repelled.  Yes, I know this is a powerful rune
+[      since everybody loves to use the rocket launch, but there is a catch.
+[      You can not use the grenade or rocket launchers.  Kinda evens things
+[      out :)
+
+[CURSED RUNES:]
+ -------------
+[   That's right, I said CURSED!  Everybody expects only good thing.  The
+[world doesn't work that way.  Well at least not my world :).  So I though
+[I would make it a little more interestng.  There are only two cursed runes.
+[However,there is catch, they can't be dropped!  You must die to get rid of it.
+[You can't suicide either.  They will carry over to the next map, if you 
+[haven't died when a level ends.  Admin may set a hold time that will allow
+[dropping of cursed runes by using localinfo cursetime xx.  xx = seconds
+[until dropping allowed.
+
+[35 - CURSED Rune of Attraction! - It's like the Rune of Repulsion in reverse.
+[      It pulls everthing that's not nailed down towards you.  This includes
+[      your own rounds.  Grenades bounce right back to you.  Rocket travel 
+[      slower to target.  If you are running forward and fire a rocket, the 
+[      rockect will reverse course, passing behind you to be sling shotted 
+[      right into your back.  Ouch! 
+[36 - CURSED Rune of the Axe! - Simple, you lose all weapons, but your axe.
+[      If you pick up another weapon, it disappears.  Good way to prevent that
+[      S.O.B. chasing you from getting it :).  Your ammo count will still
+[      increase, giving you slayer plenty of rounds.  You also gain the
+[      ability to throw your axe at opponents using impulse 100.  Fire just
+[      swings the axe like normal.
+
+[MORE NONCURSED RUNES:]
+ ---------------------
+[37 - Rune of the Delayed Grenade - Grenades will not explode until you do
+[      "impulse 100" or 30 seconds after firing.  When you pick up this rune,
+[      you get the grenade launcher and 50 additional grenades.  You can not 
+[      launch more than 10 Delayed Grenades.  Prevents you from laying 100 
+[      grenades and waiting for a victim. :) 
+
+[38 - Vorpal Axe Rune - If using the axe, you instantly killing your 
+[      opponent.  Impulse 100 wil switch your weapon to the axe and throw it.
+[      Again, if opponent hit by axe they are instantly killed.
+  
+[39 - Hell Knight Rune - When activated (impulse 100) shoots streaming fire 
+[      balls like Hell Knights do.
+
+[40 - Shooting Star Rune - When activated (impulse 100) shoots a flaming
+[     meteor that bounces around doing damage until it burns up.  When it 
+[     burns up, it explodes.  If you have quad, it will fly around at four 
+[     times it normal speed.
+
+[41 - Rune of Camel Fleas - When you touch someone, you give them a bad case
+[     of fleas.  They take five points of health every five seconds without
+[     affecting armor.  They can be gotten rid of by jumping in water, slime,
+[     or lava (ouch!) or by picking up a megahealth pack.
+
+[42 - Rune of Intangibility - You become totally invisible and invincible for
+[     30 seconds, when activated (impulse 100).  However, you can not attack
+[     or pick things up while intangible.  It may be deactivated any time, but
+[     can not be reactivated for 10 seconds.  Admin may allow picking up items
+[     by setting localinfo intangflag 1.
+
+[43 - Myhtril Armor Rune - You automatically get the red armor and it is
+[      indestructable.  The armor works like normal, but never drops in value.
+[      With red armor, you take 1/4 damage.
+
+[44 - Back Pack Rune - You can carry twice the normal amount of ammo and four
+[      medkits.  When rune is picked up, you receive an additional 100 shells,
+[      200 nails, 100 rockets, 100 cells, and 4 medkits.  Impulse 100 will
+[      use one medkit if your health is less than 100, and display how many
+[      medkits are left in the pack.  Touching medkits in the game will
+[      restore health as normal unless health is 100 or above.  Then they are
+[      added to pack until there are four in it again.
+
+[45 - Thief Rune - You steal something from others each time you bump into
+[      them.  If their armor is greater than yours, you take their armor.
+[      After armor you take a weapn that's not in use and 5 rounds of ammo.
+[      Starting with the lighting gun you work your way down to super shotgun.
+[      i.e. lightning gun, rockect launcher, grenade launcher, super nailgun,
+[      nailgun, and super shotgun.  If none of the wepons are available or you
+[      have them all, you take there ammo.  Starting with cells, rockets, nails
+[      and last but not least shells.  You take only what is needed to max that
+[      stolen type.  If they have less than is required to max out what you
+[      need, you take all but one round.  Oh, a message is sent to the victims
+[      letting them know things where stolen.
+
+ Known Bugs:
+ ------------
+  - If you have more than 100 life and Enviro rune, the life goes to 100. I
+     can probably figure this out, but it's 1:09 AM right now, and I'm tired.
+[    FIXED
+  - Sometimes the Radioactive damage makes players emit telefragging sounds
+     rather than pain sounds.  I don't know why!!!
+  - Some runes like Camoflage will cause GLQuake to crash if you look in
+     one of those mirrors.
+  - Rune of Camouflage, when you're standing on a func_train (moving platform)
+     and you stop moving to activate the power, it seems that you stop moving
+     altogether. But you're really where you should be. Your viewpoint just
+     isn't. I doubt this can be fixed.
+  - If you have the Rune of Shielding, and are shielded, and jump into the
+     "end" exit in the start level, and have noexit on, the game crashes.
+[    But that's not my fault.  FIXED
+
+
+ Planned Stuff:
+ --------------
+  - Make a Quake 2 Artifact Quake!
+
+
+ Versions:
+ ----------
+[ 2.20  - Added Mythril Armor Rune.  You automatically get the red armor and
+[         it is indestructable.  The armor works like normal, but never drops
+[         in value.  With red armor, you take 1/4 damage.
+[       - Added Back Pack Rune.  You can carry twice the normal amount of ammo
+[         and four medkits.  When rune is picked up, you receive an additional
+[         100 shells, 200 nails, 100 rockets, 100 cells, and 4 medkits.
+[         Impulse 100 will use one medkit if your health is less than 100, and
+[         display how many medkits are left in the pack.  Touching medkits in
+[         the game will restore health as normal unless health is 100 or above.
+[         Then they are added to your pack until there are four in it again.
+[       - Added Thief Rune. You steal something from others each time you bump
+[         into them.  If their armor is greater than yours, you take their
+[         armor.  After armor you take a weapn that's not in use and 5 rounds
+[         of ammo.  Starting with the lighting gun you work your way down to
+[         super shotgun.  i.e. lightning gun, rockect launcher, grenade
+[         launcher, super nailgun, nailgun, and super shotgun.  If none of the
+[         wepons are available or you have them all, you take there ammo.
+[         Starting with cells, rockets, nails and last but not least shells.
+[         You take only what is needed to max that stolen type.  If they have
+[         less than is required to max out what you need, you take all but one
+[         round.  Oh, a message is sent to the victims letting them know things
+[         where stolen.
+[       - Modified throwing axe feature for Cursed Rune of the AXE and Vorpal
+[         axe to throw the axe at four times it's normal speed when play has
+[         Quad.
+[       - Added system variable "localinfo grapflag".  Allows admin to disable
+[         the grappling hook.  Default value is zero to enable the grappling
+[         hook.  "Localinfo grapflag 1" disables the hook.
+[       - Added system variable "localinfo respawnmsg".  Determines whether
+[         bonus items (quad, ring of shadows, pent, and enviro suit) print
+[         messages announcing that they have respawned.  Default is zero for
+[         no messages.
+[       - Added system variables "localinfo gravsucktime XX" and "localinfo
+[         gravrechargetime XX".  These determine how long the Gravity Well
+[         last and how long it takes to recharge.  "XX" equals how long in
+[         seconds.  If these values are not set, it's 10 seconds stay time
+[         and 10 seconds recharge time.
+[       - Added system variable "localinfo finalquad". Allows admin to choose
+[         whether or not players are give quad damage before timelimit is met.
+[         If not set or set to zero, gameplay is normal.  Any value above zero
+[         equals the number of seconds before the timelimit that all players
+[         are given quad damage until the level expires.  If timelimit is not
+[         set, finalquad is ignored.
+[       - Added system variable "localinfo runeselect". Allows admin to choose
+[         which runes they wish to have in the game or whether to use no runes
+[         at all.  Default value is zero (localinfo runeselect 0).  Zero
+[         randomly drops all available runes.  One enables only the runes you
+[         select via "runeuse.cfg".  Two prevents any runes from being used.
+[         The runeuse.cfg file goes in the same directory as the qwprogs.dat
+[         file.  It should contain the following lines to enable each rune:
+[              Rune of Regeneration
+[                   localinfo regen 1
+[              Rune of Resistance
+[                   localinfo resist 1
+[              Rune of Haste
+[                   localinfo haste 1
+[              Rune of Environmental Protection
+[                   localinfo enviro 1
+[              Berserker Rune
+[                   localinfo berserk 1
+[              Rune of Recall
+[                   localinfo recall 1
+[              Electric Rune
+[                   localinfo electric 1
+[              Rune of Cloaking
+[                   localinfo cloak 1
+[              Rune of Devine Wind
+[                   localinfo dwind 1
+[              Death Spots Rune
+[                   localinfo deathspot 1
+[              Orb of Death Rune
+[                   localinfo orbdeath 1
+[              Rune of Camoflage
+[                   localinfo camo 1
+[              Rune of Uncontrolable Jumping
+[                   localinfo jump 1
+[              Action Movie Arsenal Rune
+[                   localinfo amovie 1
+[              Vampiric Rune
+[                   localinfo vampire 1
+[              Rune of Shielding
+[                   localinfo shield 1
+[              Rune of Strength
+[                   localinfo strength 1
+[              Rune of Radioactivity
+[                   localinfo radiation 1
+[              Switch Rune
+[                   localinfo switch 1
+[              Ice Traps Rune
+[                   localinfo freeze 1
+[              Gravity Rune
+[                   localinfo gravity 1
+[              Impact Rune
+[                   localinfo impact 1
+[              Rune of Vengance
+[                   localinfo vengeance 1
+[              Shub Hat Rune
+[                   localinfo shub 1
+[              Rune of Repulsion
+[                   localinfo repel 1
+[              Dual Recall Rune
+[                   localinfo dualrecall 1
+[              Rune of Weirdness
+[                   localinfo weird 1
+[              Phoenix Rune
+[                   localinfo phoenix 1
+[              Rune of Fire Walking
+[                   localinfo firewalk 1
+[              HoloRune
+[                   localinfo hologram 1
+[              Rune of Good Health
+[                   localinfo goodhealth 1
+[              Blink Rune
+[                   localinfo blink 1
+[              Rune of Darkness
+[                   localinfo darkness 1
+[              Anti-missile Rune
+[                   localinfo antimissile 1
+[              CURSED Rune of Attraction!
+[                   localinfo attract 1
+[              CURSED Rune of the Axe!
+[                   localinfo curseaxe 1
+[              Rune of the Delayed Grenade
+[                   localinfo dgrenade 1
+[              Vorpal Axe Rune
+[                   localinfo vorpalaxe 1
+[              Hell Knight Rune
+[                   localinfo hellknight 1
+[              Shooting Star Rune
+[                   localinfo shootingstar 1
+[              Rune of Camel Fleas
+[                   localinfo fleas 1
+[              Rune of Intangibility
+[                   localinfo intangible 1
+[              Mythril Armor Rune
+[                   localinfo mythril 1
+[              Back Pack Rune
+[                   localinfo backpack 1
+[              Theif Rune
+[                   localinfo thief 1
+[         If a rune is not listed or the "1" changed to "0", the rune is
+[         disabled.  Pay close attention to the spelling.  A copy of
+[         runeuse.cfg with all runes enabled is included in the zip file for
+[         this mod.  The exception is the Neutron Bomb rune.  It has it's own
+[         server variable.  See further down.
+
+[ 2.1.1 - Fixed Phoenix bug that prevented respawning, if you died in liquids.
+[       - Fixed Blink Rune.  Randomly teleports to you to a starting point or
+[         teleporter pad.
+[       - Runes carry over to next level.
+[       - Install U-turn, IMPULSE 96.
+[       - Installed grappling hook, IMPULSE 95.
+[       - Installed flash light for others to use, IMPULSE 101.  Not advertised :)
+[       - Added aliases for impulses.
+[               impulse 100 = ACTIVATE
+[               impulse  99 = SHOW
+[               impulse  98 = DROPRUNE
+[               impulse  97 = RUNEHELP or RUNES
+[               impulse  96 = UTURN
+[               impulse  95 = HOOK, +HOOK, or -HOOK
+[               impulse 101 = LIGHT
+[       - Added a 3 page welcome/help is displayed.  Pressing fire moves to
+[         next screen.  After 3rd screen player respawns.  While welcome/help
+[         screens are shown player is invisible and can not interact with game.
+[         They may move around their immediate are.  Only displayed when player
+[         first logs on.
+[       - Added "serverinfo" variable "sr".  Allows server admin to select a
+[         starting rune for players.  0 = no starting rune.  1 - 42 = rune 
+[         number.  43 - 100 = randomly assigned.
+[       - Added antisuicide mod.  If a palyer suicides more than 5 times within
+[         30 seconds, their name is changed to "Ima Butthead" with the message
+[         "You're a Butthead" displayed on their screen.  If they suicide more
+[         than 10 times within 30 seconds, they are disconnected.  Their
+[         console will try to connect to www.fbi.gov.  The destination may be
+[         changed by setting "serverinfo" variable "op" (other place) to the
+[         destination of your choice.  Example: serverinfo op www.id.com:27501
+[       - Added grappling hook.  Uses impulse 95 to launch and release.  It 
+[         will hook to any solid structure and pull you to it.  Hitting other
+[         players will cause it to stick in them, pull them to you, and do
+[         damage the whole time it's hooked.  If you hit other objects, they
+[         bounce around from the force of impact.
+[       - Fixed Rune of Environmental Protection.  Can now get healt above 100
+[         from megahealth packs.
+[       - Can drop runes immediately.
+[       - Changed Gravity Well.
+[               - Acts more like a black hole.  Touch it, go splat!
+[               - Last only 10 seconds.
+[               - Requires recharge of 10 seconds.
+[               - Affects owner after 5 seconds delay.
+[                 (no more Gravity Well campers :p)
+[       - Modified Rune of Regeneration to regenerate health to 200 and armor 
+[         to max for it's particular type.
+[       - Enabled Rune of Good Health.  Was disabled before.  Fixed max health
+[         to 666.  Would not go above 250 after a level change.
+[       - If the Rune of Darkness is active, Vampire Rune gives you back health
+[         equal to twice the damage you do to your victim and see in shades of
+[         red.
+[       - Teleporters don't blow you up when you try to exit with "noexit" set.
+[         It rapidly decrease your armor until depleted then your health so 
+[         long as you remain in the teleporter.
+[       - Fixed gravity for e1m8 to match regular Quake.  It's like walking on
+[         the moon.
+[       - Will announce when Quad, Pent, Enviro suit, or Ring of Shadows 
+[         reappears.
+[       - Teleporters teleport rounds.  So you can shoot people after they go
+[         through the telporter.
+[       - Added Anti-missile Rune.  Makes you invulnerable to missiles and
+[         grenades.  Will even repel them like the Rune of Repulsion.  However,
+[         you are no longer able to use the grenade or rocket launchers.
+[       - Added Rune of Darkness.  When activated entire level goes dark.  
+[         Lamps  and torches still work.  Owner of rune gets a flashlight that
+[         can be  toggled on/off by the rune activate impulse.  20 seconds of 
+[         darkness with 20 seconds of recharge before reactivating.
+[       - Added CURSED Rune of Attraction.  Like Rune of Repulsion in reverse.
+[         Pulls everything that's not nailed down towards you, including your
+[         own grenades and rockets.  Can't be dropped.  Must die to get rid of
+[         it.  Will carry over to next level.
+[       - Added CURSED Rune of the AXE.  You loose all weapons except the axe.
+[         When you pick up a weapon it disappears.  Can't be dropped.  Must die
+[         to get rid of it.  Will carry over to next level.
+[       - Added Rune of the Delayed Grenaded.  Works similar to pipe bombs in 
+[         Duke Nukem 3D(tm).  Grenades will not explode until 30 seconds later
+[         or you press the button (impulse 100).  They also act like mines.  
+[         If someone should step on them they explode.
+[       - Added Vorpal Axe Rune.  The axe instantly kills your opponent.
+[         (D&D inspiration from vorpal sword)
+[       - Added Hell Knight Rune.  You shoot stings of little fire balls like
+[         the Hell Knights in the game do.
+[       - Added Shooting Star Rune.  You shoot out a flaming meteor that 
+[         bounces around doing damage.  Explodes when it burns up.  Quadruple 
+[         speed if you have quad.
+[       - Added Rune of Camel Fleas.  When you touch someone, you give them a 
+[         bad case of fleas.  They take five points of health every five 
+[         seconds without affecting armor.  They can be gotten rid of by 
+[         jumping in water, slime, or lava (ouch!) or by picking up a 
+{         megahealth pack.
+[       - Added Rune of Intangibility.  You become totally invisible and
+[         invincible for 30 seconds, when activated (impulse 100).  However, 
+[         you can not attack or pick things up while intangible.  It may be 
+[         deactivated any time, but can not be reactivated for 10 seconds.
+
+
+  2.1 - I don't know the exact specs, but servers with teamplay on would
+         crash with deathspots a lot. This is somehow fixed. :) Fixed
+         firewalking a bit, but only for the LAN version. Oh, and added
+         the "noexit 3" option for random level selection.
+
+  2.0 - FINAL VERSION! (or is it?)
+        Action Movie Ammo now gives weapons and is Action Movie Arsenal.
+
+  1.99d - Oops! Forgot some stuff.
+  1.99c - Getting closer. Phased Rune.
+
+  1.99 - Bug fixes. New effects.
+
+  1.98 - Beserker Rune, Phoenix Rune
+
+  1.96 - Death Orb will now ALWAYS be there when owner dies. I think.
+         I think I fixed the Radioactive messages for the killer of a
+          radioactive guy.
+
+  1.93 - Won't be a grapple hook. Too much lag I think.
+         Rune of Weirdness made less powerful.
+
+  1.92 - "Rune of Dual Recall" added
+         "Rune of Weirdness" added
+         Grav rune can hurt people. This is kinda a test though.
+
+  1.91 - Still not at 2.0, which WILL be the final version for a couple months.
+         Fire Walk and Spiky Cloud should be less laggy now.
+         Blink rune no longer uses cells.
+         Now, if you recall when ON your spot, you'll un-set your point, so
+          you can set it somewhere else.
+         No more silence rune. I blended it with the Rune of Cloaking, which
+          has always had the code there, but I never used it until now.
+
+  1.9 - Runes needed to spawn faster.
+        The grapple hook code is in there. I personally like the grapple hook,
+         but I don't really want it in Artifact. Yet many people have asked
+         for it, so I'm releasing two versions. One with and one without the
+         grapple hook. The code is in BOTH versions, just disabled in one.
+
+  1.83 - Minor tweaking
+         Shambler Helper doesn't carry 1/10th of damage to its owner any more.
+         Made Shamblers less passive and more agressive.
+         Fixed that never-leave-water bug with Rune of Flight.
+         Fixed that didn't-lose-my-weapon bug with Switch Rune.
+         Added a "body-check" to impact rune.
+         Added a kinda TWEAK your neck thing to impact rune.
+         Made all the text for "You got..." appear near the bottom.
+         Rune of haste fires really fast nails instead of firing nails fast.
+
+  1.82 - Fixed Jump Rune
+         Minor tweaking
+         Added "Shambler Helper". I know, there's a LOT of work to be done
+          on it. Too many bugs.
+         Added "Rune of Floating Spiky Death Cloud". I'm afraid it COULD
+          cause a lot of lag. I might have to tweak it.
+         Rune of Flight is much different now. Much better.
+
+  1.81 - Rebalanced some stuff!
+         Made the Death Orb go boingboingboing after owner is killed.
+         Added "Shub Hat". It's real silly and I might remove it.
+         Added "Rune of Repulsion". Is it too strong?
+         Added "Rune of Vengance". I love the huge head.
+         Runes no longer fall in lava!
+         For now, you gotta keep a rune for at least 5 seconds.
+         Improved rune counting format for levels. More accurate number of
+          runes in level that you want.
+
+  1.8 - Out of beta!
+        Seriously weakened the gravity rune. I hope so at least. It
+         was waaay too strong. Actually, it pulls things harder now, just
+         players now have better traction against the ground.
+
+  1.7b - Added the "Impact Rune". Is it too weak?
+         Electric and Death Spots crippled more.
+         Gravity tweaked.
+
+  1.6b - Added the Push for the Rune of Flight. Makes it more manuverable.
+         Fixed some MAJOR problems with how the Switch Rune would switch
+          items like Quad. This is untested, but I think the last version
+          would have screwed up, and the current one shouldn't.
+         Fixed the thing how I screwed up the Rune of Uncontrollable Jumping
+          in the last version.
+
+  1.5b - Added "The Teleport Shuffle"
+         Rune of Environmental protection protects from even more now.
+         Added Enviro-Jump to the above rune. It WAS necessary.
+         Fixed more client obituary bugs.
+         Various runes crippled or less crippled.
+         Switch runes now switch health, ammo, and weapons. Too powerful??
+         Gravity rune was totally changed. It can actually be fun now.
+
+  1.4b - Added "Gravity Rune". Is this thing too annoying?
+         RuneServ is no longer in deathmatch mode 3. It's just deathmatch.
+          I have no idea why I had it that way.
+         Fixed the bug with how not all in a group are affected by
+          Uncontrollable jumping or Radioactivity.
+         Fixed the "Everlasting Death" with the pentagram + Divine Wind.
+         Death Spots seemed a little too cheap. Now you can only have 4 and
+          they take 20 health.
+
+  1.3b - Added "Ice Traps".
+         Added the "Switch Rune".
+         The Rune of Fire Walking was not doing ANY damage before. It's
+          rather deadly now, and I made the flames bigger. Huhhh huh, fire.
+         The fakes from the Holorune no longer disappear when the owner
+          dies. This wasn't hard to do, I just didn't want to do it until now.
+
+  1.2b - Quick change. Rune of Radioactivity makes a little explody thingy
+          when it goes active.
+
+  1.1b - I was right! }:P If you dropped the Rune of Shielding when you're
+          shielded, you'd be invincible forever. Forgot to fix that.
+
+  1.0b - Whee! I added the Rune of Radioactivity. Untested for playability,
+          but I hope people like it.
+         I fixed a couple bugs I missed before.
+         Runes don't make spawny sounds when moving around.
+
+  0.9b - First public release.
+         Added the last 4 runes (so they're not tested for balance in
+          deathmatch).
+         Fixed some client obituaries.
+
+  0.1b - Preprepre beta. Tested it at a local LAN party. Went smooth.
+
+
+ Misc:
+ ------
+ I'm also the author of Rune Hunt, QTank, Throw Rockets, and the Proton Storm.
+
+ Copyright and Distribution Permissions
+ ---------------------------------------
+ Authors may NOT use these modifications as a basis for other
+ publically available work. Unless they ask me first. Hehe };> 
+
+ You may distribute this Quake modification in any electronic
+ format, provided it goes unmodified and includes all files found in
+ the ZIP. You can only add it to a CD-Rom collection if you get permission
+ from the author (me) first.
+
+ Actura Software may not do anything with this mod.
+
+
+ Servers Running this (short list)
+ ---------------------------------
+ thunder.clouds.net
+ quake2.clouds.net 
+
+
+ Availability:
+ --------------
+ http://singe.telefragged.com/runeserv.html (probably)
+ http://www.planetquake.com (An OLD version though.)
