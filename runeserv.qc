@@ -422,7 +422,7 @@ void() Rune_Touch =
   {
     self.nextthink = time;
   }
-  if (other == world)
+  if (other == world && checkbottom(self))
     sound (self, CHAN_WEAPON, "weapons/tink1.wav", 1.0, ATTN_NORM);
 
   if (other.classname != "player") return;
