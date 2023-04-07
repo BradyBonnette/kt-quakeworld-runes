@@ -517,8 +517,8 @@ void() Uturn =
 void () Welcomemsg = {
   //max number of vertical lines is 14!
   //centerprint(self, "Welcome to\nHampton Road's Artifact Runes\n��������������������������������\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\n����������������������\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\n��������������������������������\nPress -fire- for next page\n");
-  //       |                                                           |
-  centerprint(self, "Welcome to KingTurd's Artifact Runes QuakeWorld Server!\nInspired by Nick 'SiNGE' Bousman's original work,\nwith modifications done by KingTurd");
+  //                                                                     |                                                           |
+  centerprint(self, "Welcome to KingTurd's Artifact Runes QW Server!\nOriginal by Nick 'SiNGE' Bousman,\nwith modifications done by KingTurd");
 };
 
 /*   kt:  we will replace this, its rather annoying....
