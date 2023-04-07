@@ -698,10 +698,12 @@ void() PutClientInServer =
 
   //self.motd_count = 0;
 
-  if (self.motd_count == 0)
+  if (self.motd_count == 0) {
     self.motd_time = time + 12;
+    self.motd_count = 1;
+  }
 
-  else self.motd_count = 1;
+  // else self.motd_count = 1;
 
   //set the motd count so it doesn't get counted again
   //self.motd_count = stof(infokey(self, "runehelp")); // setinfo rune 0
