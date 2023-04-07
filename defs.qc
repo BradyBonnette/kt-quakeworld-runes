@@ -374,7 +374,7 @@ float RN_CLOUD = 100; //Is 100 because it's disabled for now.
 // Runes I added
 float RN_DARK = 33; // rune of Darkness
 float RN_NOMIS = 34; // Anti-missile rune
-float RN_ATTRACT = 35;  // Cursed rune of attraction
+float RN_SHAMB = 36;   //Shambler rune
 float RN_AXE = 36;  // Cursed rune of the axe
 float RN_PIPE = 37; // Pipe Bomb Runes
 float RN_VAXE = 38; // Vorpal ax (instantly kill victim)
@@ -385,7 +385,7 @@ float RN_INTANG = 42;  // Rune of Intangibility
 float RN_MARMOR = 43;  // Mythril Armor Rune
 float RN_PACK = 44;    // Back Pack Rune
 float RN_THIEF = 45;   // Thief Rune
-float RN_SHAMB = 46;   //Shambler rune
+float RN_ATTRACT = 46;  // Cursed rune of attraction
 float RN_NEUTRON = 99; // Neutron Bomb rune
 
 // message protocol defines
