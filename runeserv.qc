@@ -73,7 +73,7 @@ void() Rune_Think =
 };
 
 void() Rune_Button =
-{     
+{
   if (!self.runetype) return;
   else if (self.runetype == RN_ENVIRO) Enviro_Jump();
   else if (self.runetype == RN_RECALL) Rune_Recall();
@@ -107,111 +107,111 @@ void() Rune_Button =
 void() Rune_Tell =
 {
   if (self.runetype == 0)
-    centerprint(self,"\n\n\n\n\n\n\n\n\n\n No Rune ");
+    centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ No Rune ï¿½");
   else
   {
     if (self.runetype == RN_REGEN)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Regeneration \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Regeneration ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_RESIST)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Resistance \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Resistance ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_HASTE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Haste \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Haste ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_ENVIRO)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Environmental Protection \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Environmental Protection ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_BERSERK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Berserker Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Berserker Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_RECALL)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Recall \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Recall ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_ZAP)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Electric Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Electric Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_CLOAK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Cloaking \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Cloaking ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_BOMB)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Divine Wind \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Divine Wind ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_DSPOTS)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Death Spots \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Death Spots ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_ORB)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Orb of Death \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Orb of Death ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_CAMO)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Camouflage \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Camouflage ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_JUMP)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Uncontrolable Jumping \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Uncontrolable Jumping ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_AMMO)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Action Movie Arsenal \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Action Movie Arsenal ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_VAMP)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Vampiric Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Vampiric Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_SHIELD)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Shielding \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Shielding ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_STRENGTH)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Strength \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Strength ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_RADIO)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Radioactivity \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Radioactivity ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_SWITCH)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Switch Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Switch Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_FREEZE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Ice Traps \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Ice Traps ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_SUCK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Gravity Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Gravity Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_IMPACT)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Impact Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Impact Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_VENG)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Vengeance \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Vengeance ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_SHUB)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Shub Hat \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Shub Hat ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_REPEL)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Repulsion \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Repulsion ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_DUAL)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Dual Recall \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Dual Recall ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_WEIRD)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Weirdness \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Weirdness ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_PHOENIX)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Phoenix Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Phoenix Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_FIREWALK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Fire Walking \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Fire Walking ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_HOLO)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n HoloRune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ HoloRune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_HEALTH)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Good Health \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Good Health ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_BLINK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Blink Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Blink Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     //  ****************************************************************************************************************
     else if (self.runetype == RN_DARK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Darkness \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Darkness ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_NOMIS)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Anti-missile Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Anti-missile Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_ATTRACT)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n CURSED Rune of Attraction! \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ CURSED Rune of Attraction! ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_AXE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n CURSED Rune of the Axe! \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ CURSED Rune of the Axe! ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_PIPE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of the Delayed Grenade \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of the Delayed Grenade ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_VAXE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Vorpal Axe Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Vorpal Axe Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_HKSPIKE)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Hell Knight Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Hell Knight Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_FBALL)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Shooting Star Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Shooting Star Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_FLEAS)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Camel Fleas \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Camel Fleas ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_INTANG)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Intangibility \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Intangibility ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_MARMOR)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Mythril Armor \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Mythril Armor ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_PACK)
-      centerprint(self,"\n\n\n\n\n\nŸ\n Back Pack Rune \nŸ\n Carry Twice the Ammo \n Plus 4 Med Kits \nŸ");
+      centerprint(self,"\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Back Pack Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Carry Twice the Ammo ï¿½\nï¿½ Plus 4 Med Kits ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_THIEF)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Thief Rune \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Thief Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     else if (self.runetype == RN_TWALK)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n The Teleport Shuffle \nŸ");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ The Teleport Shuffle ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     //  ****************************************************************************************************************
     //          else if (self.runetype == RN_CLOUD)
-    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Floating Spiky Death Cloud \nŸ\n");
+    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Floating Spiky Death Cloud ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     //          else if (self.runetype == RN_FLY)
-    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Rune of Flight \nŸ");
+    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Rune of Flight ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     //          else if (self.runetype == RN_PHASE)
-    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Phased Rune \nŸ\n");
+    //             centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Phased Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
     else if (self.runetype == RN_NEUTRON)
-      centerprint(self,"\n\n\n\n\n\n\n\n\n\nŸ\n Neutron Bomb Rune \nŸ\n");
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nï¿½ Neutron Bomb Rune ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
   }
 };
 
@@ -252,9 +252,9 @@ void() Rune_Activate =
   else if (self.runetype == RN_ATTRACT) (self.curse_time = time + cursetime);
   else if (self.runetype == RN_AXE)
   {
-    self.items = self.items - (self.items & 
+    self.items = self.items - (self.items &
         (IT_SHOTGUN | IT_SUPER_SHOTGUN | IT_NAILGUN | IT_SUPER_NAILGUN | IT_GRENADE_LAUNCHER | IT_ROCKET_LAUNCHER | IT_LIGHTNING | IT_SHELLS | IT_NAILS | IT_ROCKETS | IT_CELLS) );
-    self.weapon = self.weapon - (self.weapon & 
+    self.weapon = self.weapon - (self.weapon &
         (IT_SHOTGUN | IT_SUPER_SHOTGUN | IT_NAILGUN | IT_SUPER_NAILGUN | IT_GRENADE_LAUNCHER | IT_ROCKET_LAUNCHER | IT_LIGHTNING) );
     self.weapon = IT_AXE;
     self.weaponmodel = "progs/v_axe.mdl";
@@ -264,7 +264,7 @@ void() Rune_Activate =
   else if (self.runetype == RN_PIPE) Pipe();
   else if (self.runetype == RN_MARMOR) Myth_Armor ();
   else if (self.runetype == RN_PACK) Get_Pack ();
-  else if (self.runetype == RN_NEUTRON) Neutron_Spawn(); 
+  else if (self.runetype == RN_NEUTRON) Neutron_Spawn();
   //        else if (self.runetype == RN_CLOUD) Cloud_Spawn();
   //        else if (self.runetype == RN_FLY) self.movetype = MOVETYPE_FLY;
 
@@ -338,7 +338,7 @@ string() RandMap =
 
 void() MOTD =
 {
-  centerprint(self,"Hampton Road's Aòôéæáãô QõáëåWorld  v2.20\n€ƒƒƒƒƒƒƒƒ‚\nCollect a rune, get an ability!\n\nIMPULSE “’’ MUST BE BOUND.\nIMPULSE ›› shows your current rune.\nIMPULSE ›š deactivates your rune.\nIMPULSE ›™ shows this screen.\nIMPULSE ›˜ does a U-turn.\nIMPULSE ›— Toggle Grappling hook.\nƒƒ\nWritten by ÓéÎÇÅ\nModified by: Cannon Fodder\nE-mail: quake@vabch.com\n\n\n€ƒƒƒƒƒƒƒƒ‚");
+  centerprint(self,"Hampton Road's Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Qï¿½ï¿½ï¿½ï¿½World  v2.20\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nCollect a rune, get an ability!\n\nIMPULSE ï¿½ï¿½ï¿½ MUST BE BOUND.\nIMPULSE ï¿½ï¿½ shows your current rune.\nIMPULSE ï¿½ï¿½ deactivates your rune.\nIMPULSE ï¿½ï¿½ shows this screen.\nIMPULSE ï¿½ï¿½ does a U-turn.\nIMPULSE ï¿½ï¿½ Toggle Grappling hook.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nWritten by ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nModified by: Cannon Fodder\nE-mail: quake@vabch.com\n\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 };
 
 entity() SelectRuneSpawnPoint =
@@ -516,10 +516,9 @@ void() Uturn =
 };
 void () Welcomemsg = {
   //max number of vertical lines is 14!
-  //centerprint(self, "Welcome to\nHampton Road's Artifact Runes\nŸ\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\nŸ\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\nŸ\nPress -fire- for next page\n");
+  //centerprint(self, "Welcome to\nHampton Road's Artifact Runes\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nPress -fire- for next page\n");
   //       |                                                           |
-  centerprint(self, "Welcome to Merlin's Bloody-mess\nquakeworld server!");
-
+  centerprint(self, "Welcome to KingTurd's Artifact Runes QuakeWorld Server!\nInspired by Nick 'SiNGE' Bousman's original work,\nwith modifications done by KingTurd");
 };
 
 /*   kt:  we will replace this, its rather annoying....
@@ -529,7 +528,7 @@ void () Welcomemsg = {
 
      if (self.motd_count == 0)
      {
-     centerprint(self, "Welcome to\nHampton Road's Artifact Runes\nŸ\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\nŸ\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\nŸ\nPress -fire- for next page\n");
+     centerprint(self, "Welcome to\nHampton Road's Artifact Runes\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nPress -fire- for next page\n");
      if (self.attack_state == 1)
      {
      self.motd_count = 1;
@@ -539,7 +538,7 @@ void () Welcomemsg = {
      }
      if (self.motd_count == 1)
      {
-     centerprint(self,"List of Impulses\nŸ\nCollect a rune, get an ability!\nŸ\nIMPULSE “’’ activates rune             \nif rune requires activation\nIT MUST BE BOUND!          \nŸ\nIMPULSE ››  shows your current rune    \nIMPULSE ›š  drops your rune for another\nIMPULSE ›™  shows quick help screen    \nIMPULSE ›˜  does a U-turn              \nIMPULSE ›—  Grappling hook on/off      \nIMPULSE “’“ Flashlight on/off          \nŸ\n\nPress -fire- for next page");
+     centerprint(self,"List of Impulses\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nCollect a rune, get an ability!\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nIMPULSE ï¿½ï¿½ï¿½ activates rune             \nif rune requires activation\nIT MUST BE BOUND!          \nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\nIMPULSE ï¿½ï¿½  shows your current rune    \nIMPULSE ï¿½ï¿½  drops your rune for another\nIMPULSE ï¿½ï¿½  shows quick help screen    \nIMPULSE ï¿½ï¿½  does a U-turn              \nIMPULSE ï¿½ï¿½  Grappling hook on/off      \nIMPULSE ï¿½ï¿½ï¿½ Flashlight on/off          \nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n\nPress -fire- for next page");
      if (self.attack_state == 1)
      {
      self.motd_count = 2;
@@ -548,7 +547,7 @@ void () Welcomemsg = {
      }
      if (self.motd_count == 2)
      {
-     centerprint(self,"List of Aliases\n\nŸ\n'ACTIVATE' activates rune              \n'SHOW' shows your current rune \n'DROPRUNE' drops your rune for another \n'RUNEHELP' shows quick help screen     \n'UTURN' does a U-turn            \n'HOOK' Grappling hook on/off   \n'LIGHT' Flashlight on/off        \nŸ\n\nPress -fire- for next page");
+     centerprint(self,"List of Aliases\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n'ACTIVATE' activates rune              \n'SHOW' shows your current rune \n'DROPRUNE' drops your rune for another \n'RUNEHELP' shows quick help screen     \n'UTURN' does a U-turn            \n'HOOK' Grappling hook on/off   \n'LIGHT' Flashlight on/off        \nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n\nPress -fire- for next page");
      if (self.attack_state == 1)
      {
      self.motd_count = 3;
@@ -557,7 +556,7 @@ void () Welcomemsg = {
      }
      if (self.motd_count == 3)
      {
-     centerprint(self,"To see help screens again\n\nPress the F1 key\n\nŸ\n\nFor complete rune list see:\nwww.quake.vabch.com/runehelp.htm\n\nŸ\n\nPress -fire- to enter game");
+     centerprint(self,"To see help screens again\n\nPress the F1 key\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n\nFor complete rune list see:\nwww.quake.vabch.com/runehelp.htm\n\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n\nPress -fire- to enter game");
      if (self.attack_state == 1)
      {
      self.motd_count = 10;
@@ -680,7 +679,7 @@ void () Next_Rune =
   nextcount = 0;
   while (nextcount < 2)
   {
-    if (runeparm == RN_REGEN)        
+    if (runeparm == RN_REGEN)
     {
       nextrunetmp = stof(infokey(world,"regen"));
       if (nextrunetmp == 1)

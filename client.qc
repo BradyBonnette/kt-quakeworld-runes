@@ -44,7 +44,7 @@ void() SetChangeParms =
   }
 
   // remove items
-  self.items = self.items - (self.items & 
+  self.items = self.items - (self.items &
       (IT_KEY1 | IT_KEY2 | IT_INVISIBILITY | IT_INVULNERABILITY | IT_SUIT | IT_QUAD) );
 
   // cap super health
@@ -102,7 +102,7 @@ void() SetNewParms =
       Next_Rune ();
       parm16 = runeparm;
     }
-    else               
+    else
       parm16 = 0;
 
   }
@@ -311,7 +311,7 @@ void() execute_changelevel =
     other.movetype = MOVETYPE_NONE;
     other.modelindex = 0;
     other = find (other, classname, "player");
-  }       
+  }
 
 };
 
@@ -377,7 +377,7 @@ void() Resurrect;
 
 // called by ClientKill and DeadThink
 void() respawn =
-{                                             
+{
   //RUNE SERV: remove color shifts
   stuffcmd(self,"v_cshift 0 0 0 1\n");
 
@@ -407,7 +407,7 @@ void() respawn =
   //  ************************************************************************
   //                        }
   //  ************************************************************************
-  // respawn              
+  // respawn
   PutClientInServer ();
 };
 
@@ -464,7 +464,7 @@ void() ClientKill =
      stuffcmd(self,"name Ima_Butthead!\n");
      centerprint(self, "Stop suiciding!\n\nYou're a Butthead!");
      }
-     }              
+     }
      */
      else
      {
@@ -863,7 +863,7 @@ void() NextLevel =
    ============
    */
 void() CheckRules =
-{       
+{
   if (timelimit && time >= timelimit)
     NextLevel ();
 
@@ -893,7 +893,7 @@ void() PlayerDeathThink =
     forward = forward - 20;
     if (forward <= 0)
       self.velocity = '0 0 0';
-    else    
+    else
       self.velocity = forward * normalize(self.velocity);
   }
 
@@ -957,7 +957,7 @@ void() PlayerJump =
   if ( !(self.flags & FL_JUMPRELEASED) )
     return;         // don't pogo stick
 
-  self.flags = self.flags - (self.flags & FL_JUMPRELEASED);       
+  self.flags = self.flags - (self.flags & FL_JUMPRELEASED);
   self.button2 = 0;
 
   //RUNE SERV: cloak rune. No sound
@@ -1056,7 +1056,7 @@ void() WaterMove =
   if (!self.waterlevel)
   {
     if (self.flags & FL_INWATER)
-    {       
+    {
       //RUNE SERV: cloak rune. No sound
       if (self.runetype != RN_CLOAK)
 
@@ -1089,7 +1089,7 @@ void() WaterMove =
   }
 
   if ( !(self.flags & FL_INWATER) )
-  {       
+  {
 
     // player enter water sound
 
@@ -1109,7 +1109,7 @@ void() WaterMove =
 
     self.flags = self.flags + FL_INWATER;
     self.dmgtime = 0;
-  }       
+  }
 };
 
 void() CheckWaterJump =
@@ -1119,7 +1119,7 @@ void() CheckWaterJump =
   // check for a jump-out-of-water
   makevectors (self.angles);
   start = self.origin;
-  start_z = start_z + 8; 
+  start_z = start_z + 8;
   v_forward_z = 0;
   normalize(v_forward);
   end = start + v_forward*24;
@@ -1176,8 +1176,9 @@ void() PlayerPreThink =
   //if (self.motd_time > time && self.motd_count == 0) {
 
   //if (self.motd_time >  time && self.motd_count = 0) {
-  if (self.motd_time > time && self.motd_count == 0)
-    Welcomemsg(); 
+  // if (self.motd_time > time && self.motd_count == 0)
+  if (self.motd_time > time)
+    Welcomemsg();
 
   /*
      if (self.motd_count < 10) // not finished viewing
@@ -1195,7 +1196,7 @@ void() PlayerPreThink =
      }
      }
 
-*/     
+*/
 
   CheckRules ();
   WaterMove ();
@@ -1416,7 +1417,7 @@ void() CheckPowerups =
 
           sound (self, CHAN_AUTO, "items/damage2.wav", 1, ATTN_NORM);
         self.super_time = time + 1;
-      }         
+      }
 
       if (self.super_time < time)
       {
@@ -1435,9 +1436,9 @@ void() CheckPowerups =
       self.effects = self.effects | EF_DIMLIGHT;
     else
       self.effects = self.effects - (self.effects & EF_DIMLIGHT);
-  }       
+  }
 
-  // suit 
+  // suit
   if (self.radsuit_finished)
   {
     self.air_finished = time + 12;          // don't drown
@@ -1470,7 +1471,7 @@ void() CheckPowerups =
       self.rad_time = 0;
       self.radsuit_finished = 0;
     }
-  }       
+  }
 
 };
 
@@ -1495,7 +1496,7 @@ void() PlayerPostThink =
     return;
   }
 
-  // check to see if player landed and play landing sound 
+  // check to see if player landed and play landing sound
   if ((self.jump_flag < -300) && (self.flags & FL_ONGROUND) )
   {
     //RUNE SERV: Loop modified to exclude people with cloak runes.
@@ -2112,7 +2113,7 @@ void(entity targ, entity attacker) ClientObituary =
         return;
       }
       if (attacker.solid == SOLID_BSP && attacker != world)
-      {       
+      {
         bprint (PRINT_MEDIUM," was squished\n");
         return;
       }
