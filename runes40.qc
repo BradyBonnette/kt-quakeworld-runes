@@ -319,16 +319,16 @@ void() Weird_Touch =
 
     sound (self, CHAN_BODY, "boss2/idle.wav", 1, ATTN_NORM);
 
-    if (self.runevar == 1) centerprint(other, " Hit by weirdness! \nŸ\nSHROOM MODE!");
-    if (self.runevar == 2) centerprint(other, " Hit by weirdness! \nŸ\nUNCONTROLLABLE JUMPING!");
-    if (self.runevar == 3) centerprint(other, " Hit by weirdness! \nŸ\nDRUNKEN WALK!");
-    if (self.runevar == 4) centerprint(other, " Hit by weirdness! \nŸ\nTWIRLY HEAD!");
-    if (self.runevar == 5) centerprint(other, " Hit by weirdness! \nŸ\nRANDOM TWITCHING!");
-    if (self.runevar == 6) centerprint(other, " Hit by weirdness! \nŸ\nTOO MUCH COFFEE!");
-    if (self.runevar == 7) centerprint(other, " Hit by weirdness! \nŸ\nSTICKY FEET!");
-    if (self.runevar == 8) centerprint(other, " Hit by weirdness! \nŸ\nHOW DO I SHOOT?!");
-    if (self.runevar == 9) centerprint(other, " Hit by weirdness! \nŸ\nVERTIGO!");
-    if (self.runevar == 10) centerprint(other, " Hit by weirdness! \nŸ\nI'M BLIND! I'M BLIND!");
+    if (self.runevar == 1) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nSHROOM MODE!");
+    if (self.runevar == 2) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nUNCONTROLLABLE JUMPING!");
+    if (self.runevar == 3) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nDRUNKEN WALK!");
+    if (self.runevar == 4) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nTWIRLY HEAD!");
+    if (self.runevar == 5) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nRANDOM TWITCHING!");
+    if (self.runevar == 6) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nTOO MUCH COFFEE!");
+    if (self.runevar == 7) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nSTICKY FEET!");
+    if (self.runevar == 8) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nHOW DO I SHOOT?!");
+    if (self.runevar == 9) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nVERTIGO!");
+    if (self.runevar == 10) centerprint(other, "Â Hit by weirdness! Â\nÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂŸ\nI'M BLIND! I'M BLIND!");
   }
 };
 
@@ -622,7 +622,7 @@ void() Rune_Attract =
   pushee = findradius(self.origin, dist); //Find the victims.
   while(pushee)
   {
-    if (pushee.solid != SOLID_BSP && !self == pushee)
+    if (pushee.solid != SOLID_BSP && self != pushee)
     {
       if (pushee.classname != "player")
         pushee.flags = pushee.flags-(pushee.flags & FL_ONGROUND);
@@ -724,9 +724,9 @@ void () W_ThrowAxe =
 
 void () Rune_Axe =
 {
-  self.items = self.items - (self.items & 
+  self.items = self.items - (self.items &
       (IT_SHOTGUN | IT_SUPER_SHOTGUN | IT_NAILGUN | IT_SUPER_NAILGUN | IT_GRENADE_LAUNCHER | IT_ROCKET_LAUNCHER | IT_LIGHTNING | IT_SHELLS | IT_NAILS | IT_ROCKETS | IT_CELLS) );
-  self.weapon = self.weapon - (self.weapon & 
+  self.weapon = self.weapon - (self.weapon &
       (IT_SHOTGUN | IT_SUPER_SHOTGUN | IT_NAILGUN | IT_SUPER_NAILGUN | IT_GRENADE_LAUNCHER | IT_ROCKET_LAUNCHER | IT_LIGHTNING) );
   self.weapon = IT_AXE;
 };
