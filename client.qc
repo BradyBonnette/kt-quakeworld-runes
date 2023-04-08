@@ -1600,6 +1600,11 @@ void() ClientDisconnect =
     self.flash.think = SUB_Remove;
     //  ************************************************************************
   }
+
+  if (self.runetype == RN_SHAMB) {
+    spawn_tfog(self.runent.origin);
+    remove(self.runent);
+  }
   //  ************************************************************************
   set_suicide_frame ();
 };
@@ -1681,6 +1686,14 @@ void(entity targ, entity attacker) ClientObituary =
 
       targ.frags = targ.frags - 1;
       logfrag (targ, targ);
+      return;
+    }
+
+    if (attacker.classname == "shambler_slave") {
+      bprint(PRINT_MEDIUM, targ.netname);
+      bprint(PRINT_MEDIUM, " was wrecked by ");
+      bprint(PRINT_MEDIUM, attacker.owner.netname);
+      bprint(PRINT_MEDIUM, "'s pet shambler");
       return;
     }
 

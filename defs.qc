@@ -374,7 +374,7 @@ float RN_CLOUD = 100; //Is 100 because it's disabled for now.
 // Runes I added
 float RN_DARK = 33; // rune of Darkness
 float RN_NOMIS = 34; // Anti-missile rune
-float RN_SHAMB = 36;   //Shambler rune
+float RN_SHAMB = 35;   //Shambler rune
 float RN_AXE = 36;  // Cursed rune of the axe
 float RN_PIPE = 37; // Pipe Bomb Runes
 float RN_VAXE = 38; // Vorpal ax (instantly kill victim)

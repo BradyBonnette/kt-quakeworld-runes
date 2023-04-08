@@ -43,26 +43,27 @@ void() Rune_Think =
 {
   if (self.runetype > 0)
   {
-    if (self.runetype == RN_REGEN) Rune_Regen(); else
-      if (self.runetype == RN_BERSERK) Berserk_Bleed(); else
-        if (self.runetype == RN_ZAP) Rune_Zap(); else
-          if (self.runetype == RN_CLOAK) Rune_Cloak(); else
-            if (self.runetype == RN_BOMB) Rune_Bomb(); else
-              if (self.runetype == RN_CAMO) Rune_Camo(); else
-                if (self.runetype == RN_JUMP) Rune_Jump(); else
-                  if (self.runetype == RN_AMMO) Rune_Ammo(); else
-                    if (self.runetype == RN_VAMP) Rune_Vamp();
-    if (self.runetype == RN_SHIELD) Shield_On(); else
-      if (self.runetype == RN_IMPACT) Rune_Impact(); else //cause QW works better this way
-        if (self.runetype == RN_REPEL) Rune_Repel(); else
-          if (self.runetype == RN_WEIRD) Rune_Weird(); else
-            if (self.runetype == RN_FIREWALK) Rune_Firewalk(); else
-              if (self.runetype == RN_DARK) Dark_Think(); else
-                if (self.runetype == RN_NOMIS) Rune_Nomis(); else
-                  if (self.runetype == RN_ATTRACT) Rune_Attract(); else
-                    if (self.runetype == RN_FLEAS) Rune_Fleas(); else
-                      if (self.runetype == RN_INTANG) IntangThink(); else
-                        if (self.runetype == RN_THIEF) Rune_Thief();
+    if (self.runetype == RN_REGEN) Rune_Regen();
+    else if (self.runetype == RN_BERSERK) Berserk_Bleed();
+    else if (self.runetype == RN_ZAP) Rune_Zap();
+    else if (self.runetype == RN_CLOAK) Rune_Cloak();
+    else if (self.runetype == RN_BOMB) Rune_Bomb();
+    else if (self.runetype == RN_CAMO) Rune_Camo();
+    else if (self.runetype == RN_JUMP) Rune_Jump();
+    else if (self.runetype == RN_AMMO) Rune_Ammo();
+    else if (self.runetype == RN_VAMP) Rune_Vamp();
+    else if (self.runetype == RN_SHIELD) Shield_On();
+    else if (self.runetype == RN_IMPACT) Rune_Impact(); //cause QW works better this way
+    else if (self.runetype == RN_REPEL) Rune_Repel();
+    else if (self.runetype == RN_WEIRD) Rune_Weird();
+    else if (self.runetype == RN_FIREWALK) Rune_Firewalk();
+    else if (self.runetype == RN_DARK) Dark_Think();
+    else if (self.runetype == RN_NOMIS) Rune_Nomis();
+    else if (self.runetype == RN_ATTRACT) Rune_Attract();
+    else if (self.runetype == RN_FLEAS) Rune_Fleas();
+    else if (self.runetype == RN_INTANG) IntangThink();
+    else if (self.runetype == RN_THIEF) Rune_Thief();
+    // else if (self.runetype == RN_SHAMB) Rune_ShamblerSpawn();
     //                if (self.runetype == RN_FLY) Rune_Fly(); else         // don't work
     //                if (self.runetype == RN_PHASE) Wall_Check(); else     // don't work
   }
@@ -102,6 +103,13 @@ void() Rune_Button =
   }
   else if (self.runetype == RN_PACK)Pack_Heal();
   else if (self.runetype == RN_TWALK) Rune_Twalk();  // don't work
+  else if (self.runetype == RN_SHAMB) {
+    if(self.runent) {
+      remove(self.runent);
+    }
+
+    Rune_ShamblerSpawn();
+  }
   else if (self.runetype == RN_NEUTRON) Neutron_Time(); // always last in list
 };
 void() Rune_Tell =
@@ -203,6 +211,8 @@ void() Rune_Tell =
       centerprint(self,"\n\n\n\n\n\n\n\n\n\n����������������������\n� Thief Rune �\n����������������������");
     else if (self.runetype == RN_TWALK)
       centerprint(self,"\n\n\n\n\n\n\n\n\n\n����������������������\n� The Teleport Shuffle �\n����������������������");
+    else if (self.runetype == RN_SHAMB)
+      centerprint(self,"\n\n\n\n\n\n\n\n\n\n����������������������\n� Shambler Helper �\n����������������������");
     //  ****************************************************************************************************************
     //          else if (self.runetype == RN_CLOUD)
     //             centerprint(self,"\n\n\n\n\n\n\n\n\n\n����������������������\n� Rune of Floating Spiky Death Cloud �\n����������������������\n");
@@ -265,6 +275,7 @@ void() Rune_Activate =
   else if (self.runetype == RN_MARMOR) Myth_Armor ();
   else if (self.runetype == RN_PACK) Get_Pack ();
   else if (self.runetype == RN_NEUTRON) Neutron_Spawn();
+  else if (self.runetype == RN_SHAMB) Rune_ShamblerSpawn();
   //        else if (self.runetype == RN_CLOUD) Cloud_Spawn();
   //        else if (self.runetype == RN_FLY) self.movetype = MOVETYPE_FLY;
 
@@ -502,6 +513,9 @@ void(float numspawn) Rune_SpawnAll =
     {
       Next_Rune();
       Rune_Spawn(temp.origin, 500, 500, 500, runeparm);
+      // TEMP TEMP TEMP
+      // Next_Rune();
+      // Rune_Spawn(temp.origin, 500, 500, 500, RN_SHAMB);
     }
     //      Rune_Spawn(temp.origin, 500, 500, 500, type);
     counter = counter + 1;
@@ -517,7 +531,6 @@ void() Uturn =
 void () Welcomemsg = {
   //max number of vertical lines is 14!
   //centerprint(self, "Welcome to\nHampton Road's Artifact Runes\n��������������������������������\nOriginal Artifact Runes\nwritten by:\nNick 'SiNGE' Bousman\nE-Mail: singe@ix.netcom.com\n����������������������\nModified by:\nRandy 'Cannon Fodder' Bancroft\nE-Mail: quake@vabch.com\n��������������������������������\nPress -fire- for next page\n");
-  //                                                                     |                                                           |
   centerprint(self, "Welcome to KingTurd's Artifact Runes QW Server!\nOriginal by Nick 'SiNGE' Bousman,\nwith modifications done by KingTurd");
 };
 
@@ -1260,10 +1273,22 @@ void () Next_Rune =
       }
       else
       {
-        runeparm = RN_REGEN;
+        runeparm = RN_SHAMB;
       }
     }
 
+    if (runeparm == RN_SHAMB)
+    {
+      nextrunetmp = stof(infokey(world,"shambler"));
+      if (nextrunetmp == 1)
+      {
+        return;
+      }
+      else
+      {
+        runeparm = RN_REGEN;
+      }
+    }
 
     nextcount = nextcount + 1;
   }

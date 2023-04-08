@@ -480,7 +480,7 @@ void(float dist) ai_painforward =
    */
 void(float dist) ai_walk =
 {
-  bprint (PRINT_MEDIUM," ai_walk()\n");
+  // bprint (PRINT_MEDIUM," ai_walk()\n");
   local vector		mtemp;
 
   movedist = dist;

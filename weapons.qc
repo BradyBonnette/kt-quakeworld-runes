@@ -1720,6 +1720,16 @@ void() ImpulseCommands =
           }
         }
       }
+      else if (self.runetype == RN_SHAMB) {
+        // kill self.runent
+        spawn_tfog(self.runent.origin);
+        remove(self.runent);
+        self.runetype = 0;
+        Rune_Activate();
+        stuffcmd(self,"v_cshift 0 0 0 0\nbf\n");
+        centerprint(self,"Rune Removed");
+        if (runecurrent < runemax) Rune_SpawnAll(1);
+      }
       else if (self.runetype == RN_NEUTRON)
       {
         centerprint(self, "Can't drop Neutron Bomb Rune!\n\nGet underwater before it blows!\n");
