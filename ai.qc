@@ -154,7 +154,7 @@ return;
 float(entity targ) range =
 {
   local vector	spot1, spot2;
-  local float		r;	
+  local float		r;
   spot1 = self.origin + self.view_ofs;
   spot2 = targ.origin + targ.view_ofs;
 
@@ -287,7 +287,7 @@ void() SightSound =
 {
   local float	rsnd;
 
-  if (self.classname == "monster_ogre")	
+  if (self.classname == "monster_ogre")
     sound (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
   else if (self.classname == "monster_knight")
     sound (self, CHAN_VOICE, "knight/ksight.wav", 1, ATTN_NORM);
@@ -309,7 +309,7 @@ void() SightSound =
     sound (self, CHAN_VOICE, "vomitus/v_sight1.wav", 1, ATTN_NORM);
   else if (self.classname == "monster_enforcer")
   {
-    rsnd = rint(random() * 3);			
+    rsnd = rint(random() * 3);
     if (rsnd == 1)
       sound (self, CHAN_VOICE, "enforcer/sight1.wav", 1, ATTN_NORM);
     else if (rsnd == 2)
@@ -565,7 +565,7 @@ void(vector dest3) ChooseTurn =
   }
 
   dir_z = 0;
-  self.ideal_yaw = vectoyaw(dir);	
+  self.ideal_yaw = vectoyaw(dir);
 };
 
 /*
@@ -703,7 +703,7 @@ void(float dist) ai_run =
   // see if the enemy is dead
   if (self.enemy.health <= 0)
   {
-    //		bprint (PRINT_MEDIUM,"my enemy is dead?!\n");	
+    //		bprint (PRINT_MEDIUM,"my enemy is dead?!\n");
     self.enemy = world;
     // FIXME: look all around for other targets
     if (self.oldenemy.health > 0)

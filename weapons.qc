@@ -142,7 +142,7 @@ void(vector org, vector vel) SpawnMeatSpray =
   missile.think = SUB_Remove;
 
   setmodel (missile, "progs/zom_gib.mdl");
-  setsize (missile, '0 0 0', '0 0 0');            
+  setsize (missile, '0 0 0', '0 0 0');
   setorigin (missile, org);
 };
 
@@ -446,7 +446,7 @@ void() W_FireRocket =
   newmis.movetype = MOVETYPE_FLYMISSILE;
   newmis.solid = SOLID_BBOX;
 
-  // set newmis speed     
+  // set newmis speed
 
   makevectors (self.v_angle);
   newmis.velocity = aim(self, 1000);
@@ -460,7 +460,7 @@ void() W_FireRocket =
   newmis.think = SUB_Remove;
 
   setmodel (newmis, "progs/missile.mdl");
-  setsize (newmis, '0 0 0', '0 0 0');             
+  setsize (newmis, '0 0 0', '0 0 0');
   setorigin (newmis, self.origin + v_forward*8 + '0 0 16');
 };
 
@@ -651,7 +651,7 @@ void() GrenadeTouch =
    ================
    */
 void() W_FireGrenade =
-{       
+{
   self.currentammo = self.ammo_rockets = self.ammo_rockets - 1;
 
   //RUNE SERV: cloak rune. No sound
@@ -668,7 +668,7 @@ void() W_FireGrenade =
   newmis.solid = SOLID_BBOX;
   newmis.classname = "grenade";
 
-  // set newmis speed     
+  // set newmis speed
 
   makevectors (self.v_angle);
 
@@ -691,7 +691,7 @@ void() W_FireGrenade =
 
   //  *************************************************************************
   //  pipe bomb rune
-  if (self.runetype == RN_PIPE)  //  
+  if (self.runetype == RN_PIPE)  //
   {
     newmis.nextthink = time + 30;
   }
@@ -704,7 +704,7 @@ void() W_FireGrenade =
   newmis.think = GrenadeExplode;
 
   setmodel (newmis, "progs/grenade.mdl");
-  setsize (newmis, '0 0 0', '0 0 0');             
+  setsize (newmis, '0 0 0', '0 0 0');
   setorigin (newmis, self.origin);
 };
 
@@ -736,7 +736,7 @@ void(vector org, vector dir) launch_spike =
   newmis.think = SUB_Remove;
   newmis.nextthink = time + 6;
   setmodel (newmis, "progs/spike.mdl");
-  setsize (newmis, VEC_ORIGIN, VEC_ORIGIN);               
+  setsize (newmis, VEC_ORIGIN, VEC_ORIGIN);
   setorigin (newmis, org);
 
   //RUNE SERV: Haste rune makes them fly faster
@@ -760,7 +760,7 @@ void() W_FireSuperSpikes =
   launch_spike (self.origin + '0 0 16', dir);
   newmis.touch = superspike_touch;
   setmodel (newmis, "progs/s_spike.mdl");
-  setsize (newmis, VEC_ORIGIN, VEC_ORIGIN);               
+  setsize (newmis, VEC_ORIGIN, VEC_ORIGIN);
   msg_entity = self;
   WriteByte (MSG_ONE, SVC_SMALLKICK);
 };
@@ -1150,7 +1150,7 @@ void() W_Attack =
     if (self.rocket_type == 0)
     {
       //RUNE SERV: Speed weapons fire.
-      if (self.runetype == RN_HASTE) self.attack_finished = time + 0.35; 
+      if (self.runetype == RN_HASTE) self.attack_finished = time + 0.35;
       else
 
         self.attack_finished = time + 0.8;
@@ -1160,14 +1160,14 @@ void() W_Attack =
     }
 
     if (self.rocket_type == 1)  //we are using guided missile
-    { 
+    {
       //self.attack_finished = time + 9999999;  //so we cant fire again
 
       fire_guided();
 
     }
 
-  }		
+  }
   else if (self.weapon == IT_LIGHTNING)
   {
     self.attack_finished = time + 0.1;
@@ -1208,7 +1208,7 @@ void() W_ChangeWeapon =
     fl = IT_SUPER_SHOTGUN;
     if (self.ammo_shells < 2)
       am = 1;
-  }               
+  }
   else if (self.impulse == 4)
   {
     fl = IT_NAILGUN;
@@ -1257,7 +1257,7 @@ void() W_ChangeWeapon =
   //
   // set weapon, set ammo
   //
-  self.weapon = fl;               
+  self.weapon = fl;
   W_SetCurrentAmmo ();
 };
 
@@ -1274,7 +1274,7 @@ void() CheatCommand =
   self.ammo_rockets = 100;
   self.ammo_nails = 200;
   self.ammo_shells = 100;
-  self.items = self.items | 
+  self.items = self.items |
     IT_AXE |
     IT_SHOTGUN |
     IT_SUPER_SHOTGUN |
@@ -1328,7 +1328,7 @@ void() CycleWeaponCommand =
       self.weapon = IT_SUPER_SHOTGUN;
       if (self.ammo_shells < 2)
         am = 1;
-    }               
+    }
     else if (self.weapon == IT_SUPER_SHOTGUN)
     {
       self.weapon = IT_NAILGUN;
@@ -1434,7 +1434,7 @@ void() CycleWeaponReverseCommand =
       self.weapon = IT_SUPER_SHOTGUN;
       if (self.ammo_shells < 2)
         am = 1;
-    }               
+    }
     else if (self.weapon == IT_SUPER_SHOTGUN)
     {
       self.weapon = IT_SHOTGUN;
@@ -1485,12 +1485,12 @@ void() select_alternative_weapon =
   {
     if (self.grenade_type == 0)
     {
-      sprint(self, PRINT_HIGH, "ŽStarburstŽ\n");
+      sprint(self, PRINT_HIGH, "ï¿½Starburstï¿½\n");
     }
 
     if (self.grenade_type == 1 || self.weapon != IT_GRENADE_LAUNCHER)
     {
-      sprint(self, PRINT_HIGH, "ŽGrenade LauncherŽ\n");
+      sprint(self, PRINT_HIGH, "ï¿½Grenade Launcherï¿½\n");
     }
 
     self.grenade_type = self.grenade_type + 1;
@@ -1538,7 +1538,7 @@ void() Neutron_Spawn;
    */
 void() ImpulseCommands =
 {
-  if (!(self.classname == "dorkwad")) 
+  if (!(self.classname == "dorkwad"))
   {
     local string timeleft;
     //  *************************************************************************
@@ -1555,12 +1555,12 @@ void() ImpulseCommands =
       {
         if (self.grenade_type == 0)
         {
-          sprint(self, PRINT_HIGH, "ŽStarburstŽ\n");
+          sprint(self, PRINT_HIGH, "ï¿½Starburstï¿½\n");
         }
 
         if (self.grenade_type == 1 || self.weapon != IT_GRENADE_LAUNCHER)
         {
-          sprint(self, PRINT_HIGH, "ŽGrenade LauncherŽ\n");
+          sprint(self, PRINT_HIGH, "ï¿½Grenade Launcherï¿½\n");
         }
 
         self.grenade_type = self.grenade_type + 1;
@@ -1575,19 +1575,19 @@ void() ImpulseCommands =
         if (self.ammo_rockets > 0) {
           if (self.rocket_type == 0)
           {
-            sprint(self, PRINT_HIGH, "ŽGuided MissileŽ\n");
+            sprint(self, PRINT_HIGH, "ï¿½Guided Missileï¿½\n");
           }
 
           else //if (self.grenade_type == 1 || self.weapon != IT_GRENADE_LAUNCHER)
             if (self.rocket_type == 1)
             {
 
-              sprint(self, PRINT_HIGH, "ŽRocket LauncherŽ\n");
+              sprint(self, PRINT_HIGH, "ï¿½Rocket Launcherï¿½\n");
             }
 
-          self.rocket_type = self.rocket_type + 1;  
+          self.rocket_type = self.rocket_type + 1;
 
-          if (self.rocket_type > 1) 
+          if (self.rocket_type > 1)
             self.rocket_type = 0;
         }
       }
@@ -1767,7 +1767,7 @@ void() ImpulseCommands =
     /*
        if (self.impulse == 103)
        {
-       self.ammo_cells = self.ammo_cells + 1;               
+       self.ammo_cells = self.ammo_cells + 1;
        if ((pointcontents(self.origin)) == CONTENT_EMPTY)
        {
        sprint(self,PRINT_HIGH, "pointcontents is empty\n");
@@ -1852,6 +1852,8 @@ void() ImpulseCommands =
       lavatrap();
     if (self.impulse == 190)
       screen_thing();
+    if (self.impulse == 198)
+      Neutron_Spawn();
     if (self.impulse == 199)
       Rune_ShamblerSpawn();
     /*

@@ -16,13 +16,13 @@ void() FleaThink =
   }
   T_Damage (self.owner, self, self.fleaowner, 5); // do damage
   sound (self.owner, CHAN_AUTO, "fish/idle.wav", 1, ATTN_NORM);
-  self.nextthink = time + 5; 
-};      
+  self.nextthink = time + 5;
+};
 
 void(entity flearcvr, entity fleaownr) GetFleas =
 {
   local   entity fleas;
-  fleas = spawn (); 
+  fleas = spawn ();
   fleas.owner = flearcvr; // flea entity belongs to victim
   fleas.fleaowner = fleaownr; // who fleas came from
   fleas.movetype = MOVETYPE_NONE;
@@ -31,7 +31,7 @@ void(entity flearcvr, entity fleaownr) GetFleas =
   fleas.owner.fleaflag = 1;
 
   setmodel (fleas, "");
-  setsize (fleas, '0 0 0', '0 0 0');             
+  setsize (fleas, '0 0 0', '0 0 0');
   setorigin (fleas, '0 0 0');
 
   fleas.nextthink = time + 1;
@@ -68,7 +68,7 @@ void() Rune_Fleas =
 
         }
       }
-    }        
+    }
     head = head.chain;
   }
 };
@@ -98,7 +98,7 @@ void () Intang_Button =
     sprint(self,PRINT_HIGH, timeleft);
     sprint(self,PRINT_HIGH, " seconds to recharge\n");
   }
-  else 
+  else
   {
     self.runevar = 0;
     self.runetime = time + 10;
@@ -560,7 +560,7 @@ void() Rune_Thief =
                               sprint(selected,PRINT_MEDIUM,"Your shells have been stolen!");
                             }
       }
-    }        
+    }
     head = head.chain;
   }
 };
@@ -592,7 +592,7 @@ void() Rune_ShamblerReloc =
 
 void() Rune_ShamblerThink =
 {
-  //if (self.runent.health < 300 && self.runent.health > 0)	bprint(PRINT_MEDIUM, "Shambler Hungry!  Must eat meat!\n"); 
+  //if (self.runent.health < 300 && self.runent.health > 0)	bprint(PRINT_MEDIUM, "Shambler Hungry!  Must eat meat!\n");
   // if (self.owner.runetype != RN_SHAMB || self.owner.health < 1)
 
   if (self.owner.health < 1)
@@ -638,7 +638,7 @@ void() Rune_ShamblerThink =
             self.runent.enemy = selected;
           }
         }
-      }        
+      }
       head = head.chain;
     }
 
@@ -712,7 +712,7 @@ void() ShamblerBowelThink = {
     return;
   }
 
-  local entity temp;	
+  local entity temp;
   setorigin(self, self.runent.origin);
 
   if (self.runent.health > 0) {
@@ -753,6 +753,7 @@ void() Rune_ShamblerSpawn =
   sham.th_missile = sham_magic1;
   sham.th_pain = sham_pain;
   sham.think = Rune_ShamblerThink;
+  // sham.deadflag = DEAD_NO;
   sham.nextthink = time + 0.5;
   sham.classname = "shambler_slave";
   self.runent = sham;

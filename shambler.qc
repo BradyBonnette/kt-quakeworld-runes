@@ -8,32 +8,32 @@
 
 $cd id1/models/shams
 $origin 0 0 24
-$base base		
+$base base
 $skin base
 
 $frame stand1 stand2 stand3 stand4 stand5 stand6 stand7 stand8 stand9
 $frame stand10 stand11 stand12 stand13 stand14 stand15 stand16 stand17
 
-$frame walk1 walk2 walk3 walk4 walk5 walk6 walk7 
+$frame walk1 walk2 walk3 walk4 walk5 walk6 walk7
 $frame walk8 walk9 walk10 walk11 walk12
 
 $frame	run1 run2 run3 run4 run5 run6
 
-$frame smash1 smash2 smash3 smash4 smash5 smash6 smash7 
+$frame smash1 smash2 smash3 smash4 smash5 smash6 smash7
 $frame smash8 smash9 smash10 smash11 smash12
 
-$frame swingr1 swingr2 swingr3 swingr4 swingr5 
+$frame swingr1 swingr2 swingr3 swingr4 swingr5
 $frame swingr6 swingr7 swingr8 swingr9
 
-$frame swingl1 swingl2 swingl3 swingl4 swingl5 
+$frame swingl1 swingl2 swingl3 swingl4 swingl5
 $frame swingl6 swingl7 swingl8 swingl9
 
-$frame magic1 magic2 magic3 magic4 magic5 
+$frame magic1 magic2 magic3 magic4 magic5
 $frame magic6 magic7 magic8 magic9 magic10 magic11 magic12
 
 $frame pain1 pain2 pain3 pain4 pain5 pain6
 
-$frame death1 death2 death3 death4 death5 death6 
+$frame death1 death2 death3 death4 death5 death6
 $frame death7 death8 death9 death10 death11
 
 void() sham_stand1	=[	$stand1,	sham_stand2	] {ai_stand();};
@@ -305,7 +305,7 @@ void() poop = {
 
 
   sound (self, CHAN_VOICE, "sick.wav", 1, ATTN_NORM);
-  //sound (self, CHAN_VOICE, "sick.wav", 1, ATTN_NORM);	
+  //sound (self, CHAN_VOICE, "sick.wav", 1, ATTN_NORM);
 
   ThrowHead ("progs/h_shams.mdl", 50);
 
@@ -352,11 +352,14 @@ void() sham_die =
     ThrowGib ("progs/gib1.mdl", self.health);
     ThrowGib ("progs/gib2.mdl", self.health);
     ThrowGib ("progs/gib3.mdl", self.health);
+    // self.deadflag = DEAD_DEAD;
     return;
   }
 
   // regular death
-  sound (self, CHAN_VOICE, "shambler/sdeath.wav", 1, ATTN_NORM);	
+
+  // self.deadflag = DEAD_DYING;
+  sound (self, CHAN_VOICE, "shambler/sdeath.wav", 1, ATTN_NORM);
   sham_death1 ();
 };
 
